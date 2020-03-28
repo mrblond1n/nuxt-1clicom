@@ -1,117 +1,164 @@
 <template>
-  <v-app dark>
-    <v-navigation-drawer
-      v-model="drawer"
-      :mini-variant="miniVariant"
-      :clipped="clipped"
-      fixed
-      app
+  <v-app id="inspire">
+    <app-header @changeNavList="changeNavList" />
+    <!-- <app-navigation @changeNavList="changeNavList" /> -->
+
+    <!-- CONTENT -->
+    <transition
+      mode="out-in"
+      enter-active-class="animated slideInLeft"
+      leave-active-class="animated slideOutRight"
     >
-      <v-list>
-        <v-list-item
-          v-for="(item, i) in items"
-          :key="i"
-          :to="item.to"
-          router
-          exact
-        >
-          <v-list-item-action>
-            <v-icon>{{ item.icon }}</v-icon>
-          </v-list-item-action>
-          <v-list-item-content>
-            <v-list-item-title v-text="item.title" />
-          </v-list-item-content>
-        </v-list-item>
-      </v-list>
-    </v-navigation-drawer>
-    <v-app-bar
-      :clipped-left="clipped"
-      fixed
-      app
-    >
-      <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
-      <v-btn
-        icon
-        @click.stop="miniVariant = !miniVariant"
-      >
-        <v-icon>mdi-{{ `chevron-${miniVariant ? 'right' : 'left'}` }}</v-icon>
-      </v-btn>
-      <v-btn
-        icon
-        @click.stop="clipped = !clipped"
-      >
-        <v-icon>mdi-application</v-icon>
-      </v-btn>
-      <v-btn
-        icon
-        @click.stop="fixed = !fixed"
-      >
-        <v-icon>mdi-minus</v-icon>
-      </v-btn>
-      <v-toolbar-title v-text="title" />
-      <v-spacer />
-      <v-btn
-        icon
-        @click.stop="rightDrawer = !rightDrawer"
-      >
-        <v-icon>mdi-menu</v-icon>
-      </v-btn>
-    </v-app-bar>
-    <v-content>
-      <v-container>
-        <nuxt />
-      </v-container>
-    </v-content>
-    <v-navigation-drawer
-      v-model="rightDrawer"
-      :right="right"
-      temporary
-      fixed
-    >
-      <v-list>
-        <v-list-item @click.native="right = !right">
-          <v-list-item-action>
-            <v-icon light>
-              mdi-repeat
-            </v-icon>
-          </v-list-item-action>
-          <v-list-item-title>Switch drawer (click me)</v-list-item-title>
-        </v-list-item>
-      </v-list>
-    </v-navigation-drawer>
-    <v-footer
-      :fixed="fixed"
-      app
-    >
-      <span>&copy; {{ new Date().getFullYear() }}</span>
+      <router-view></router-view>
+    </transition>
+    <!-- FOOTER  -->
+    <v-footer id="footer" class="footer" app padless @changeNavList="changeNavList">
+      <app-footer></app-footer>
     </v-footer>
+
+    <!-- SNACKBARS -->
+    <!-- <template>
+      <v-snackbar
+        v-if="snackbar.message"
+        :multi-line="true"
+        :timeout="4000"
+        :color="snackbar.color"
+        :value="true"
+        @input="closeSnackbar"
+      >
+        {{ snackbar.message }}
+        <v-btn color="black" text @click.native="closeSnackbar">
+          <v-icon center>mdi-close</v-icon>
+        </v-btn>
+      </v-snackbar>
+    </template>-->
+    <!-- MODAL -->
+    <!-- <app-modal v-if="modal" /> -->
   </v-app>
 </template>
 
 <script>
+import appHeader from "./header";
+// import appNavigation from "@/components/Navigation";
+import appFooter from "./footer";
+// import appModal from "@/components/Modals/Modal";
 export default {
-  data () {
+  components: {
+    appHeader,
+    // appNavigation,
+    appFooter
+    // appModal
+  },
+  data() {
     return {
-      clipped: false,
       drawer: false,
-      fixed: false,
-      items: [
-        {
-          icon: 'mdi-apps',
-          title: 'Welcome',
-          to: '/'
-        },
-        {
-          icon: 'mdi-chart-bubble',
-          title: 'Inspire',
-          to: '/inspire'
-        }
-      ],
-      miniVariant: false,
-      right: true,
-      rightDrawer: false,
-      title: 'Vuetify.js'
+      list: [
+        { title: "лик: эксперт", path: "/expert" },
+        { title: "лик: эксперт 1с", path: "/expert_1c" },
+        { title: "лик: бизнес", path: "/business" },
+        { title: "лик: менеджер", path: "/manager" },
+        { title: "лик: контрагент", path: "/kontr" },
+        { title: "о нашей компании", path: "/about" },
+        { title: "партнерский раздел", path: "/partner_page" }
+      ]
+    };
+  },
+  computed: {
+    loading() {
+      return this.$store.getters.loading;
+    },
+    snackbar() {
+      return this.$store.getters.snackbar;
+    },
+    modal() {
+      return this.$store.getters.modal;
     }
+  },
+  methods: {
+    opacityColor(color) {
+      return `rgba(${color}, .7)`;
+    },
+    closeSnackbar() {
+      this.$store.dispatch("clearSnackbar");
+    },
+    changeNavList(router_name) {
+      this.$store.dispatch("setCurrentNavList", router_name);
+    }
+  },
+  created() {
+    this.changeNavList(`/${this.$router.currentRoute.name.toLowerCase()}`);
+  }
+};
+</script>
+
+<style lang="scss">
+section,
+.section {
+  min-height: 650px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 80px 20px 80px 20px;
+}
+
+// @font-face {
+//   font-family: "Bebas Neue";
+//   src: url("~@/assets/fonts/bebas/BebasNeueRegular.woff2") format("woff2"),
+//     url("~@/assets/fonts/bebas/BebasNeueRegular.woff") format("woff");
+//   font-weight: normal;
+//   font-style: normal;
+// }
+
+#drawer {
+  background: rgba(#000, 0.7);
+  min-height: 100%;
+}
+.navigation_link {
+  white-space: normal !important;
+  text-align: center;
+}
+
+.v-application .display-1,
+.v-application .display-2,
+.v-application .display-3,
+.v-application .display-4,
+.v-application .headline,
+.v-application .title,
+.v-application .subtitle-1,
+.v-application .subtitle-2 {
+  // font-family: "Bebas Neue";
+}
+
+.v-application ul {
+  padding: 0 !important;
+}
+
+ul li {
+  list-style: none;
+  margin: 5px 0;
+}
+
+#footer {
+  position: static;
+}
+
+@media (min-width: 1904px) {
+  .container {
+    max-width: 1185px;
   }
 }
-</script>
+@media (max-width: 504px) {
+  html {
+    font-size: 13px !important;
+  }
+}
+
+.list__item {
+  border-bottom: 2px dotted #000;
+}
+
+.list__item.reverse {
+  border-bottom: 2px dotted #fff;
+}
+</style>

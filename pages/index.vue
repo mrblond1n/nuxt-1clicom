@@ -182,12 +182,6 @@ export default {
     home_data() {
       return this.$store.state.home.list;
     }
-    // getHomeHowMuchTable() {
-    //   return this.$store.getters.getHomeHowMuchTable;
-    // },
-    // getServicesTable() {
-    //   return this.$store.getters.getServicesTable;
-    // }
   },
   methods: {
     modal_window_call(num) {

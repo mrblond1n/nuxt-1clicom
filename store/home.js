@@ -132,9 +132,3 @@ export const state = () => ({
     ]
   }
 });
-
-// export const getters = () => ({
-//   getHomeData(state) {
-//     return state.list;
-//   }
-// });
