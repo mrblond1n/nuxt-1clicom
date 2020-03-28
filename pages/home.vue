@@ -19,14 +19,14 @@
                   style="min-width: 150px"
                   class="text-center ma-3"
                 >
-                  <!-- <animate-number
+                  <animate-number
                     easing="easeOutQuad"
                     class="headline"
                     :formatter="formatter"
                     from="0"
                     :to="item.count"
                     :duration="1000 * random_integer(2, 5)"
-                  ></animate-number>-->
+                  ></animate-number>
                   <div class="headline">{{item.title}}</div>
                 </v-layout>
               </v-layout>
@@ -53,7 +53,7 @@
                 <v-list-item style="width: 200px">
                   <v-layout column>
                     <v-list-item-avatar size="150" style="margin-right: 0" class="avatar-icon">
-                      <!-- <v-img :src="require('@/assets/images/home/' + item.src)"></v-img> -->
+                      <v-img :src="require('~/static/images/home/' + item.src)"></v-img>
                     </v-list-item-avatar>
                     <div class="caption text-center">{{item.description}}</div>
                   </v-layout>
@@ -66,7 +66,7 @@
       </section>
 
       <section class="section">
-        <!-- <app-table :page="`ht_1`" :table_data="getServicesTable"></app-table> -->
+        <!-- <app-table :page="`ht_1`" :table_data="$store.state.tables.services"></app-table> -->
       </section>
 
       <section class="section">
@@ -90,7 +90,7 @@
                       :color="item.color"
                       class="avatar-icon"
                     >
-                      <!-- <v-img :src="require('@/assets/images/home/' + item.src)"></v-img> -->
+                      <v-img :src="require('~/static/images/home/' + item.src)"></v-img>
                     </v-list-item-avatar>
                     <v-list-item-title class="subtitle-2">{{item.title}}</v-list-item-title>
                     <div class="caption text-center">{{item.description}}</div>
@@ -103,7 +103,7 @@
       </section>
 
       <section class="section">
-        <!-- <app-table :page="`ht_2`" :table_data="getHomeHowMuchTable"></app-table> -->
+        <!-- <app-table :page="`ht_2`" :table_data="$store.state.tables.how_much_home" /> -->
       </section>
 
       <section class="section">
@@ -122,7 +122,7 @@
                 <v-list-item>
                   <v-layout column>
                     <v-list-item-avatar size="130" style="margin-right: 0" class="avatar-icon">
-                      <!-- <v-img :src="require('@/assets/images/home/' + item.src)" /> -->
+                      <v-img :src="require('~/static/images/home/' + item.src)" />
                     </v-list-item-avatar>
                     <v-list-item-title class="subtitle-2">{{item.title}}</v-list-item-title>
                     <div class="caption text-center">{{item.description}}</div>
@@ -168,12 +168,12 @@
 </template>
 
 <script>
-// import appTable from "@/components/Mist/Table";
+import appTable from "@/components/mist/Table";
 
 import set_section_id from "~/library/set_section_id";
 export default {
   components: {
-    // appTable
+    appTable
   },
   data() {
     return {};
@@ -200,7 +200,7 @@ export default {
     }
   },
   mounted() {
-    // set_section_id(this);
+    set_section_id(this);
   }
 };
 </script>
