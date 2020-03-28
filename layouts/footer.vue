@@ -101,15 +101,19 @@
 </template>
 
 <script>
+import { mapMutations } from "vuex";
 export default {
   data() {
     return {};
   },
   methods: {
     changeNavList(router_name) {
-      this.$store.dispatch("setCurrentNavList", router_name).then(() => {
-        this.$vuetify.goTo(0, { duration: 0 });
-      });
+      console.log(router_name);
+      this.$store
+        .dispatch("navigation/setCurrentNavList", router_name)
+        .then(() => {
+          this.$vuetify.goTo(0, { duration: 0 });
+        });
     }
   }
 };

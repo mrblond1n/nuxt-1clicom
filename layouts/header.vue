@@ -10,8 +10,8 @@
 
       <router-link v-if="this.$vuetify.breakpoint.name != 'xs'" to="/home" tag="div">
         <div class="pointer" @click="changeNavList('/home')">
-          <!-- <v-toolbar-title class="display-1">{{getCurrentNavList.title}}</v-toolbar-title>
-          <v-toolbar-title class="caption">{{getCurrentNavList.subtitle}}</v-toolbar-title>-->
+          <v-toolbar-title class="display-1">{{getCurrentNavList.title}}</v-toolbar-title>
+          <v-toolbar-title class="caption">{{getCurrentNavList.subtitle}}</v-toolbar-title>
         </div>
       </router-link>
 
@@ -80,7 +80,7 @@ export default {
       return this.$store.getters.isUserLogin;
     },
     getCurrentNavList() {
-      return this.$store.getters.getCurrentNavList;
+      return this.$store.state.navigation.current_navigation_list;
     }
   },
   methods: {
@@ -104,36 +104,35 @@ export default {
       return true;
     },
     show_drawer() {
-      this.$store.dispatch("show_drawer", true);
+      // this.$store.dispatch("show_drawer", true);
     },
     modal_window_call(name) {
       // Клик по кнопке навигации Logout
-      if (name === "point_exit") {
-        this.$store.dispatch("logoutUser").then(() => {
-          this.drawer = false;
-          if (this.$router.history.current.name === "Auth_partner") {
-            this.$router.push("/partner_page").then(() => {
-              this.changeNavList("/partner_page");
-            });
-          }
-        });
-
-        return;
-      }
-      // Клик по кнопке заказа звонка в шапке и кнопке Login
-      if (name == "expert_1c") {
-        this.$store.dispatch("show_modal", {
-          id: "c0",
-          txt: "Заявка на обратный звонок",
-          name: name
-        });
-        return;
-      }
-      this.$store.dispatch("show_modal", {
-        id: name.charAt() + 0,
-        txt: "Заявка на обратный звонок",
-        name: name
-      });
+      // if (name === "point_exit") {
+      //   this.$store.dispatch("logoutUser").then(() => {
+      //     this.drawer = false;
+      //     if (this.$router.history.current.name === "Auth_partner") {
+      //       this.$router.push("/partner_page").then(() => {
+      //         this.changeNavList("/partner_page");
+      //       });
+      //     }
+      //   });
+      //   return;
+      // }
+      // // Клик по кнопке заказа звонка в шапке и кнопке Login
+      // if (name == "expert_1c") {
+      //   this.$store.dispatch("show_modal", {
+      //     id: "c0",
+      //     txt: "Заявка на обратный звонок",
+      //     name: name
+      //   });
+      //   return;
+      // }
+      // this.$store.dispatch("show_modal", {
+      //   id: name.charAt() + 0,
+      //   txt: "Заявка на обратный звонок",
+      //   name: name
+      // });
     }
   }
 

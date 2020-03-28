@@ -42,6 +42,9 @@ import appHeader from "./header";
 // import appNavigation from "@/components/Navigation";
 import appFooter from "./footer";
 // import appModal from "@/components/Modals/Modal";
+
+import { mapState } from "vuex";
+
 export default {
   components: {
     appHeader,
@@ -79,10 +82,10 @@ export default {
       return `rgba(${color}, .7)`;
     },
     closeSnackbar() {
-      this.$store.dispatch("clearSnackbar");
+      // this.$store.dispatch("clearSnackbar");
     },
     changeNavList(router_name) {
-      this.$store.dispatch("setCurrentNavList", router_name);
+      this.$store.commit("navigation/set_current_nav_list", router_name);
     }
   },
   created() {
@@ -102,13 +105,13 @@ section,
   padding: 80px 20px 80px 20px;
 }
 
-// @font-face {
-//   font-family: "Bebas Neue";
-//   src: url("~@/assets/fonts/bebas/BebasNeueRegular.woff2") format("woff2"),
-//     url("~@/assets/fonts/bebas/BebasNeueRegular.woff") format("woff");
-//   font-weight: normal;
-//   font-style: normal;
-// }
+@font-face {
+  font-family: "Bebas Neue";
+  src: url("~@/static/fonts/bebas/BebasNeueRegular.woff2") format("woff2"),
+    url("~@/static/fonts/bebas/BebasNeueRegular.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
 
 #drawer {
   background: rgba(#000, 0.7);
@@ -127,7 +130,7 @@ section,
 .v-application .title,
 .v-application .subtitle-1,
 .v-application .subtitle-2 {
-  // font-family: "Bebas Neue";
+  font-family: "Bebas Neue";
 }
 
 .v-application ul {

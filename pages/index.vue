@@ -170,7 +170,7 @@
 <script>
 // import appTable from "@/components/Mist/Table";
 
-// import set_section_id from "@/library/set_section_id";
+import set_section_id from "~/library/set_section_id";
 export default {
   components: {
     // appTable
