@@ -66,7 +66,7 @@
       </section>
 
       <section class="section">
-        <!-- <app-table :page="`ht_1`" :table_data="$store.state.tables.services"></app-table> -->
+        <app-table :page="`ht_1`" :table_data="$store.state.tables.services" />
       </section>
 
       <section class="section">
@@ -103,7 +103,7 @@
       </section>
 
       <section class="section">
-        <!-- <app-table :page="`ht_2`" :table_data="$store.state.tables.how_much_home" /> -->
+        <app-table :page="`ht_2`" :table_data="$store.state.tables.home_how_much" />
       </section>
 
       <section class="section">

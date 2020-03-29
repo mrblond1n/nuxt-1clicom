@@ -105,14 +105,6 @@ section,
   padding: 80px 20px 80px 20px;
 }
 
-@font-face {
-  font-family: "Bebas Neue";
-  src: url("~@/static/fonts/bebas/BebasNeueRegular.woff2") format("woff2"),
-    url("~@/static/fonts/bebas/BebasNeueRegular.woff") format("woff");
-  font-weight: normal;
-  font-style: normal;
-}
-
 #drawer {
   background: rgba(#000, 0.7);
   min-height: 100%;
