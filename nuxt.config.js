@@ -43,6 +43,7 @@ export default {
     "@nuxtjs/axios",
     // Doc: https://github.com/nuxt-community/dotenv-module
     "@nuxtjs/dotenv",
+    "@neneos/nuxt-animate.css",
     [
       "@nuxtjs/redirect-module",
       {
@@ -64,7 +65,7 @@ export default {
   vuetify: {
     customVariables: ["~/assets/variables.scss"],
     theme: {
-      dark: true,
+      dark: false,
       themes: {
         dark: {
           primary: colors.blue.darken2,

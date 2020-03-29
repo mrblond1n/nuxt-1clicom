@@ -189,45 +189,6 @@ export default () => ({
       }
     ]
   },
-  list_headers_buttons: [
-    {
-      text: "Скачать лик:бизнес для ос windows",
-      icon: "mdi-microsoft-windows",
-      href: "https://1clicom.ru/soft/releases/lic_business_win_2.4.0.zip",
-      download: true
-    },
-    {
-      text: "Скачать ЛИК:БИЗНЕС для 1C обычное*",
-      src: "1c-logo",
-      href: "https://1clicom.ru/soft/LicBusinessOP_2_3_4_12.epf",
-
-      download: true
-    },
-    {
-      text: "Скачать ЛИК:БИЗНЕС для 1C управляемое*",
-      src: "1c-logo",
-      href: "https://1clicom.ru/soft/LicBusinessUP_2_3_4_12.epf",
-      download: true
-    },
-    {
-      text: "Руководство пользователя для ЛИК:БИЗНЕС Windows",
-      icon: "mdi-file",
-      href: "https://1clicom.ru/instruction/manual_LICbusiness2_win.pdf",
-      download: true
-    },
-    {
-      text: "Руководство пользователя для ЛИК:БИЗНЕС 1c",
-      icon: "mdi-file",
-      href: "https://1clicom.ru/instruction/rukovodstvo_lic_biz-kontr.pdf",
-      download: true
-    },
-    {
-      text: "Скачать лик:бизнес для ос windows XP",
-      icon: "mdi-microsoft-windows",
-      href: "https://1clicom.ru/soft/releases/lic_business_win_2.3.7-XP.zip",
-      download: true
-    }
-  ],
   possible_section: {
     title: "лик:бизнес даёт вам возможность:",
     list: [

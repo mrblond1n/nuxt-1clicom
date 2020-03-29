@@ -10,8 +10,8 @@
       >
         <template v-for="(title, i) in section_info.titles">
           <template v-if="title.page == toggle">
-            <v-layout column class="mb-5" :key="`title_${i}`">
-              <h3 class="display-2 mb-3" style="line-height: 1.3" v-html="title.main"></h3>
+            <v-layout align-center justify-center column class="mb-5" :key="`title_${i}`">
+              <h3 class="display-2 mb-3 text-center" style="line-height: 1.3" v-html="title.main"></h3>
               <h4 class="headline" v-html="title.sub"></h4>
             </v-layout>
           </template>

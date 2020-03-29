@@ -8,9 +8,11 @@
     "dev": "nuxt",
     "build": "nuxt build",
     "start": "nuxt start",
-    "generate": "nuxt generate"
+    "generate": "nuxt generate",
+    "update": "git add . && git commit -m 'update'"
   },
   "dependencies": {
+    "@neneos/nuxt-animate.css": "^0.0.1",
     "@nuxtjs/axios": "^5.3.6",
     "@nuxtjs/dotenv": "^1.4.0",
     "@nuxtjs/redirect-module": "^0.3.1",
