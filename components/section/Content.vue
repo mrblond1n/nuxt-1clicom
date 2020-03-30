@@ -1,5 +1,6 @@
 <template>
   <!-- Обычная секция -->
+  <!-- <v-container :data-aos="Number(page.charAt(1)) % 2 === 0 ? 'fade-right': 'fade-left'"> -->
   <v-container>
     <v-layout column align-center justify-space-around>
       <v-layout column>

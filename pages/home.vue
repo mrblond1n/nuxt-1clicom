@@ -1,7 +1,10 @@
 <template>
   <v-content class="pa-0 content">
     <v-layout column>
-      <section class="section section__header-home">
+      <section
+        class="section section__header-home"
+        :style="{'background': 'url(' + require('~/static/images/home/bg.jpg') + ') center center / cover no-repeat'}"
+      >
         <v-container>
           <v-layout class="text-center" column>
             <v-layout column class="my-5">
@@ -11,25 +14,27 @@
             <v-layout column class="my-5">
               <h4 class="display-1 text-center">В нашей базе данных</h4>
               <hr class="my-5" />
-              <v-layout row wrap>
-                <v-layout
-                  v-for="(item, i) in home_data.first"
-                  :key="i"
-                  column
-                  style="min-width: 150px"
-                  class="text-center ma-3"
-                >
-                  <animate-number
-                    easing="easeOutQuad"
-                    class="headline"
-                    :formatter="formatter"
-                    from="0"
-                    :to="item.count"
-                    :duration="1000 * random_integer(2, 5)"
-                  ></animate-number>
-                  <div class="headline">{{item.title}}</div>
+              <client-only>
+                <v-layout row wrap>
+                  <v-layout
+                    v-for="(item, i) in home_data.first"
+                    :key="i"
+                    column
+                    style="min-width: 150px"
+                    class="text-center ma-3"
+                  >
+                    <animate-number
+                      easing="easeOutQuad"
+                      class="headline"
+                      :formatter="formatter"
+                      from="0"
+                      :to="item.count"
+                      :duration="1000 * random_integer(2, 5)"
+                    ></animate-number>
+                    <div class="headline">{{item.title}}</div>
+                  </v-layout>
                 </v-layout>
-              </v-layout>
+              </client-only>
             </v-layout>
           </v-layout>
         </v-container>
@@ -218,7 +223,7 @@ export default {
 }
 
 .section:first-child {
-  // background: url(../assets/images/home/bg.jpg) center center / cover no-repeat;
+  // background: url(../static/images/home/bg.jpg) center center / cover no-repeat;
   background: #000;
   color: white;
 }
