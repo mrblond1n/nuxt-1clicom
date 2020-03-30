@@ -3,7 +3,7 @@
     <v-card-title class="headline">{{new_info.date}}</v-card-title>
     <v-img
       class="white--text align-end"
-      :src="require('@/assets/images/partner_news/' + new_info.src)"
+      :src="require('@/static/images/partner_news/' + new_info.src)"
     ></v-img>
     <v-card-text>
       <ul>

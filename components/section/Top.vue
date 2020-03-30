@@ -170,7 +170,7 @@ export default {
   methods: {
     modal_window_call(src) {
       if (typeof src === String) {
-        this.$store.dispatch("show_modal", {
+        this.$store.dispatch("shared/show_modal", {
           name: "pdf",
           src,
           txt: "Заявка на обратный звонок"
@@ -183,7 +183,7 @@ export default {
       } else {
         id = this.$router.history.current.name.charAt(0).toLowerCase() + 1;
       }
-      this.$store.dispatch("show_modal", {
+      this.$store.dispatch("shared/show_modal", {
         id,
         txt: "Заявка на обратный звонок"
       });

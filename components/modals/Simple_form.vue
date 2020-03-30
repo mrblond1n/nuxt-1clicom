@@ -60,7 +60,7 @@ export default {
   },
   methods: {
     close() {
-      this.$store.dispatch("show_modal", false);
+      this.$store.dispatch("shared/show_modal", false);
     },
     send() {
       if (!this.$refs.form.validate()) return;
@@ -88,17 +88,17 @@ export default {
       formData.append("subject", `1clicom: ${this.modal.txt}`);
       formData.append("type", "simple");
 
-      this.$store.dispatch("send_data", formData).then(() => {
-        this.$store.dispatch("show_modal", false);
+      this.$store.dispatch("shared/send_data", formData).then(() => {
+        this.$store.dispatch("shared/show_modal", false);
       });
     }
   },
   computed: {
     rules() {
-      return this.$store.getters.rules;
+      return this.$store.state.shared.rules;
     },
     modal() {
-      return this.$store.getters.modal;
+      return this.$store.state.shared.modal;
     },
     title() {
       switch (this.modal.id.charAt(0)) {

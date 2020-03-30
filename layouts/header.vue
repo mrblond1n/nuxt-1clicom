@@ -4,7 +4,7 @@
 
     <!-- TOP  -->
     <v-app-bar app dark id="bar" :color="'rgba(0, 0, 0, .7)'">
-      <v-app-bar-nav-icon v-if="!style_width()" @click.stop="show_drawer"></v-app-bar-nav-icon>
+      <v-app-bar-nav-icon v-if="!style_width()" @click.stop="show_drawer" />
 
       <!-- Заголовок -->
       <router-link v-if="this.$vuetify.breakpoint.name != 'xs'" to="/home" tag="div">
@@ -107,31 +107,31 @@ export default {
     },
     modal_window_call(name) {
       // Клик по кнопке навигации Logout
-      // if (name === "point_exit") {
-      //   this.$store.dispatch("logoutUser").then(() => {
-      //     this.drawer = false;
-      //     if (this.$router.history.current.name === "Auth_partner") {
-      //       this.$router.push("/partner_page").then(() => {
-      //         this.changeNavList("/partner_page");
-      //       });
-      //     }
-      //   });
-      //   return;
-      // }
-      // // Клик по кнопке заказа звонка в шапке и кнопке Login
-      // if (name == "expert_1c") {
-      //   this.$store.dispatch("show_modal", {
-      //     id: "c0",
-      //     txt: "Заявка на обратный звонок",
-      //     name: name
-      //   });
-      //   return;
-      // }
-      // this.$store.dispatch("show_modal", {
-      //   id: name.charAt() + 0,
-      //   txt: "Заявка на обратный звонок",
-      //   name: name
-      // });
+      if (name === "point_exit") {
+        this.$store.dispatch("shared/logoutUser").then(() => {
+          this.drawer = false;
+          if (this.$router.history.current.name === "Auth_partner") {
+            this.$router.push("/partner_page").then(() => {
+              this.changeNavList("/partner_page");
+            });
+          }
+        });
+        return;
+      }
+      // Клик по кнопке заказа звонка в шапке и кнопке Login
+      if (name == "expert_1c") {
+        this.$store.dispatch("shared/show_modal", {
+          id: "c0",
+          txt: "Заявка на обратный звонок",
+          name: name
+        });
+        return;
+      }
+      this.$store.dispatch("shared/show_modal", {
+        id: name.charAt() + 0,
+        txt: "Заявка на обратный звонок",
+        name: name
+      });
     }
   }
 

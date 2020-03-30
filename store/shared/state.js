@@ -7,10 +7,34 @@ export default () => ({
     message: ""
   },
   modal: false,
+  rules: {
+    mail: v =>
+      (v ? /^\w+([/.-]?\w+)*@\w+([/.-]?\w+)*(.\w{2,3})+$/.test(v) : true) ||
+      "Неправильно указан e-mail."
+    // mail: function(v) {
+    //   if (v) {
+    //     return /^\w+([/.-]?\w+)*@\w+([/.-]?\w+)*(.\w{2,3})+$/.test(v);
+    //   } else {
+    //     return "Неправильно указан e-mail.";
+    //   }
+    // },
+    // required: function(v) {
+    //   if (!v) return "Это поле обязательно к заполнению.";
+    //   return true;
+    // },
+    // counter: function(v) {
+    //   if (v.length <= 15) return true;
+    //   return "Максимум 15 символов";
+    // },
+    // phone: function(v) {
+    //   if (v.length >= "## ## ##### #".length) return true;
+    //   return "Неверно указан номер телефона";
+    // }
+  },
   // rules: {
-  //   mail: v =>
-  //     (v ? /^\w+([/.-]?\w+)*@\w+([/.-]?\w+)*(.\w{2,3})+$/.test(v) : true) ||
-  //     "Неправильно указан e-mail.",
+  // mail: v =>
+  //   (v ? /^\w+([/.-]?\w+)*@\w+([/.-]?\w+)*(.\w{2,3})+$/.test(v) : true) ||
+  //   "Неправильно указан e-mail.",
   //   required: v => !!v || "Это поле обязательно к заполнению.",
   //   counter: v => v.length <= 15 || "Максимум 15 символов",
   //   phone: v =>

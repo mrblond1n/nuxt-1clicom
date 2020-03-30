@@ -34,7 +34,7 @@
       </v-snackbar>
     </template>-->
     <!-- MODAL -->
-    <!-- <app-modal v-if="modal" /> -->
+    <app-modal v-if="$store.state.shared.modal" />
   </v-app>
 </template>
 
@@ -42,7 +42,7 @@
 import appHeader from "./header";
 import appNavigation from "./navigation";
 import appFooter from "./footer";
-// import appModal from "@/components/Modals/Modal";
+import appModal from "@/components/modals/Modal";
 
 import { mapState } from "vuex";
 
@@ -50,8 +50,8 @@ export default {
   components: {
     appHeader,
     appNavigation,
-    appFooter
-    // appModal
+    appFooter,
+    appModal
   },
   data() {
     return {
@@ -73,9 +73,6 @@ export default {
     },
     snackbar() {
       return this.$store.getters.snackbar;
-    },
-    modal() {
-      return this.$store.getters.modal;
     }
   },
   methods: {

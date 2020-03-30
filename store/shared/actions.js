@@ -9,9 +9,7 @@ export default {
     commit("clearSnackbar");
   },
   show_modal({ commit }, payload) {
-    console.log("show_modal))");
-
-    commit("shared/show_modal", payload);
+    commit("show_modal", payload);
   },
   show_drawer({ commit }, payload) {
     commit("show_drawer", payload);
