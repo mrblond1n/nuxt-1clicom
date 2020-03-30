@@ -1,5 +1,5 @@
 <template>
-  <v-container>
+  <v-container data-aos="fade-in">
     <v-layout column justify-center align-center>
       <h3 class="display-2 text-center mb-5">{{table_data.title}}</h3>
       <v-simple-table

@@ -92,27 +92,13 @@ export default {
     this.changeNavList(`/${this.$router.currentRoute.name.toLowerCase()}`);
   },
   mounted() {
-    let page_first_letter;
-    if (window.location.pathname === "/auth_partner") {
-      page_first_letter = "p";
-    } else if (window.location.pathname === "/expert_1c") {
-      page_first_letter = "c";
-    } else {
-      page_first_letter = window.location.pathname.charAt(1);
-    }
-    document.querySelectorAll(".section").forEach((section, i) => {
-      section.setAttribute("id", page_first_letter + i);
+    document.querySelectorAll("section").forEach((section, index) => {
+      section.setAttribute("id", index);
       section.children[0].setAttribute("data-aos-delay", 200);
+      section.children[0].setAttribute("data-aos-duration", 500);
       section.children[0].setAttribute("data-aos-easing", "ease-in-out");
-      if (i % 2 === 0) {
-        section.children[0].setAttribute("data-aos", "fade-right");
-      } else {
-        section.children[0].setAttribute("data-aos", "fade-left");
-      }
     });
-  },
-  afterCreated() {
-    console.log("asd");
+    // component.$vuetify.goTo(0, { duration: 0 });
   }
 };
 </script>

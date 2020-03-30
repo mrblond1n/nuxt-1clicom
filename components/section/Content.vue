@@ -1,7 +1,6 @@
 <template>
   <!-- Обычная секция -->
-  <!-- <v-container :data-aos="Number(page.charAt(1)) % 2 === 0 ? 'fade-right': 'fade-left'"> -->
-  <v-container>
+  <v-container :data-aos="Number(page.charAt(1)) % 2 === 0 ? 'fade-right': 'fade-left'">
     <v-layout column align-center justify-space-around>
       <v-layout column>
         <h3 class="display-2">{{section.title}}</h3>
@@ -67,6 +66,9 @@ export default {
         return "error";
       }
     }
+  },
+  mounted() {
+    console.log(this.$parent);
   }
 };
 </script>
