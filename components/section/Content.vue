@@ -66,9 +66,6 @@ export default {
         return "error";
       }
     }
-  },
-  mounted() {
-    console.log(this.$parent);
   }
 };
 </script>

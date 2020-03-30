@@ -28,5 +28,5 @@ export default () => ({
     duration: 1000,
     offset: 0
   },
-  drawer: false
+  drawer: true
 });

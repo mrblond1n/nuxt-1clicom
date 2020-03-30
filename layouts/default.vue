@@ -1,5 +1,6 @@
 <template>
   <v-app id="inspire">
+    <app-navigation @changeNavList="changeNavList" />
     <app-header @changeNavList="changeNavList" />
     <!-- <app-navigation @changeNavList="changeNavList" /> -->
 
@@ -92,12 +93,6 @@ export default {
     this.changeNavList(`/${this.$router.currentRoute.name.toLowerCase()}`);
   },
   mounted() {
-    document.querySelectorAll("section").forEach((section, index) => {
-      section.setAttribute("id", index);
-      section.children[0].setAttribute("data-aos-delay", 200);
-      section.children[0].setAttribute("data-aos-duration", 500);
-      section.children[0].setAttribute("data-aos-easing", "ease-in-out");
-    });
     // component.$vuetify.goTo(0, { duration: 0 });
   }
 };

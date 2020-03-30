@@ -7,7 +7,6 @@
       <v-app-bar-nav-icon v-if="!style_width()" @click.stop="show_drawer"></v-app-bar-nav-icon>
 
       <!-- Заголовок -->
-
       <router-link v-if="this.$vuetify.breakpoint.name != 'xs'" to="/home" tag="div">
         <div class="pointer" @click="changeNavList('/home')">
           <v-toolbar-title class="display-1">{{getCurrentNavList.title}}</v-toolbar-title>
@@ -104,7 +103,7 @@ export default {
       return true;
     },
     show_drawer() {
-      // this.$store.dispatch("show_drawer", true);
+      this.$store.dispatch("shared/show_drawer", true);
     },
     modal_window_call(name) {
       // Клик по кнопке навигации Logout
