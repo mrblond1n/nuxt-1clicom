@@ -1,5 +1,8 @@
 import colors from "vuetify/es5/util/colors";
+
+const env = require("dotenv").config();
 export default {
+  env: env.parsed,
   mode: "universal",
   pageTransition: {
     name: "page",
@@ -50,7 +53,6 @@ export default {
     // Doc: https://axios.nuxtjs.org/usage
     "@nuxtjs/axios",
     // Doc: https://github.com/nuxt-community/dotenv-module
-    "@nuxtjs/dotenv",
     "@neneos/nuxt-animate.css",
     [
       "@nuxtjs/redirect-module",

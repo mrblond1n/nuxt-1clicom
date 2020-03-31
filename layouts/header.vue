@@ -50,7 +50,7 @@
           <v-icon :left="style_width()">mdi-phone</v-icon>
           <template v-show="style_width()">заказать звонок</template>
         </v-btn>
-        <v-btn v-if="!isUserLogin" text @click="modal_window_call('point_entry')">
+        <v-btn v-if="!user_is_set" text @click="modal_window_call('point_entry')">
           <v-icon>mdi-account</v-icon>
         </v-btn>
         <v-btn v-else text @click="modal_window_call('point_exit')">
@@ -77,8 +77,8 @@ export default {
     };
   },
   computed: {
-    isUserLogin() {
-      return this.$store.getters.isUserLogin;
+    user_is_set() {
+      return this.$store.getters["user/user_is_set"];
     },
     getCurrentNavList() {
       return this.$store.state.navigation.current_navigation_list;
@@ -87,11 +87,11 @@ export default {
   methods: {
     set_path_for_link(path) {
       // Проверка на логин юзера
-      if (this.isUserLogin && path === "/partner_page") return "/auth_partner";
+      if (this.user_is_set && path === "/partner_page") return "/auth_partner";
       return path;
     },
     changeNavList(router_name) {
-      this.isUserLogin && router_name === "/partner_page"
+      this.user_is_set && router_name === "/partner_page"
         ? (router_name = "/auth_partner")
         : router_name;
       this.$emit("changeNavList", router_name);

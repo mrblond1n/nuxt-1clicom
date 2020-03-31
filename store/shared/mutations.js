@@ -1,12 +1,12 @@
 export default {
-  setLoading(state, payload) {
+  set_loading(state, payload) {
     state.loading = payload;
   },
-  setSnackbar(state, payload) {
+  set_snackbar(state, payload) {
     state.snackbar.message = payload.message;
     state.snackbar.color = payload.color;
   },
-  clearSnackbar(state) {
+  clear_snackbar(state) {
     state.snackbar.message = "";
     state.snackbar.color = "";
   },

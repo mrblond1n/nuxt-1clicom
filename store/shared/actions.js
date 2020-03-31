@@ -1,12 +1,12 @@
 export default {
-  setLoading({ commit }, payload) {
-    commit("shared/setLoading", payload);
+  set_loading({ commit }, payload) {
+    commit("set_loading", payload);
   },
-  setSnackbar({ commit }, payload) {
-    commit("setError", payload);
+  set_snackbar({ commit }, payload) {
+    commit("set_snackbar", payload);
   },
-  clearSnackbar({ commit }) {
-    commit("clearSnackbar");
+  clear_snackbar({ commit }) {
+    commit("clear_snackbar");
   },
   show_modal({ commit }, payload) {
     commit("show_modal", payload);

@@ -80,7 +80,7 @@ export default {
       return `rgba(${color}, .7)`;
     },
     closeSnackbar() {
-      this.$store.dispatch("shared/clearSnackbar");
+      this.$store.dispatch("shared/clear_snackbar");
     },
     changeNavList(router_name) {
       this.$store.commit("navigation/set_current_nav_list", router_name);
@@ -95,7 +95,8 @@ export default {
   },
   mounted() {
     // console.log($axios);
-    console.log(ENV.some);
+    console.log(process.env.api);
+    console.log(process.env.api);
   }
 };
 </script>
