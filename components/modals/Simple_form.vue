@@ -43,9 +43,11 @@
 
 <script>
 import { mask } from "vue-the-mask";
+import get_rules from "~/library/rules_for_fields";
 export default {
   directives: {
-    mask
+    mask,
+    get_rules
   },
   data() {
     return {
@@ -55,7 +57,23 @@ export default {
       user_mail: "",
       form_valid: true,
       form_title: "",
-      user_phone_mask: "+7-(###)-###-##-##"
+      user_phone_mask: "+7-(###)-###-##-##",
+      rules: {
+        mail: v =>
+          (v ? /^\w+([/.-]?\w+)*@\w+([/.-]?\w+)*(.\w{2,3})+$/.test(v) : true) ||
+          "Неправильно указан e-mail.",
+        required: v => !!v || "Это поле обязательно к заполнению.",
+        counter: v => v.length <= 15 || "Максимум 15 символов",
+        phone: v =>
+          (v ? v.length : 20) >= "+7-(###)-###-##-##".length ||
+          "Неверно указан номер телефона",
+        inn: v =>
+          (v ? v.length : 20) >= "## ## ##### #".length ||
+          "Неверно указан номер инн",
+        password: v => (v ? v.length : 8) >= 8 || "Минимум 8 символов",
+        service_place: v =>
+          !!v || "Необходимо выбрать колличество рабочих мест."
+      }
     };
   },
   methods: {
@@ -94,9 +112,14 @@ export default {
     }
   },
   computed: {
-    rules() {
-      return this.$store.state.shared.rules;
-    },
+    // rules() {
+    //   console.log(
+    //     this.$store.getters["shared/rules"].mail,
+    //     this.data_rules.mail
+    //   );
+
+    //   return this.$store.getters["shared/rules"];
+    // },
     modal() {
       return this.$store.state.shared.modal;
     },
@@ -177,6 +200,10 @@ export default {
           return "мы перезвоним через пять минут";
       }
     }
+  },
+  mounted() {
+    // this.rules = get_rules().rules;
+    // console.log(this.rules);
   }
 };
 </script>

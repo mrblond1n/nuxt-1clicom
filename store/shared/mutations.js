@@ -11,8 +11,6 @@ export default {
     state.snackbar.color = "";
   },
   show_modal(state, payload) {
-    console.log(payload);
-
     state.modal = payload;
   },
   show_drawer(state, payload) {
