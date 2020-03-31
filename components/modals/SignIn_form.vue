@@ -52,7 +52,7 @@ export default {
   },
   methods: {
     close() {
-      this.$store.dispatch("show_modal", false);
+      this.$store.dispatch("shared/show_modal", false);
     },
     onSubmit() {
       if (this.$refs.form.validate()) {
@@ -60,12 +60,15 @@ export default {
           user_name: this.login.toLowerCase(),
           user_pass: this.password
         };
-        this.$store.dispatch("loginUser", user).then(res => {
+        this.$store.dispatch("user/user_login", user).then(res => {
           if (!res) return;
-          this.$store.dispatch("get_user_info", res);
-          this.$store.dispatch("show_modal", false);
+          // this.$store.dispatch("get_user_info", res);
+          this.$store.dispatch("shared/show_modal", false);
           this.$router.push("/auth_partner");
-          this.$store.dispatch("setCurrentNavList", "/auth_partner");
+          this.$store.dispatch(
+            "navigation/set_current_nav_list",
+            "/auth_partner"
+          );
         });
       }
     }

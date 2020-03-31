@@ -95,6 +95,7 @@ export default {
   },
   mounted() {
     // console.log($axios);
+    console.log(ENV.some);
   }
 };
 </script>
