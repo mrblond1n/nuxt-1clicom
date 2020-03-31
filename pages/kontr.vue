@@ -1,24 +1,22 @@
 <template>
-  <v-content class="pa-0 content">
-    <v-layout column>
-      <section class="section kontr">
-        <app-section-header :section_info="$store.state.kontr.top_section" />
-      </section>
-      <section
-        v-for="(section, i) in $store.state.kontr.list_sections"
-        :key="i + 10"
-        class="section kontr"
-      >
-        <app-section :page="`k${i + 2}`" :section="section"></app-section>
-      </section>
-      <section class="section kontr">
-        <app-section-possible page="kp" :section="$store.state.kontr.possible_section"></app-section-possible>
-      </section>
-      <section class="section kontr">
-        <app-table page="kt" :table_data="$store.state.tables.kontr_how_much"></app-table>
-      </section>
-    </v-layout>
-  </v-content>
+  <v-layout column>
+    <section class="section kontr">
+      <app-section-header :section_info="$store.state.kontr.top_section" />
+    </section>
+    <section
+      v-for="(section, i) in $store.state.kontr.list_sections"
+      :key="i + 10"
+      class="section kontr"
+    >
+      <app-section :page="`k${i + 2}`" :section="section"></app-section>
+    </section>
+    <section class="section kontr">
+      <app-section-possible page="kp" :section="$store.state.kontr.possible_section"></app-section-possible>
+    </section>
+    <section class="section kontr">
+      <app-table page="kt" :table_data="$store.state.tables.kontr_how_much"></app-table>
+    </section>
+  </v-layout>
 </template>
 
 <script>

@@ -8,12 +8,12 @@
         <v-app-bar-nav-icon v-show="!style_width()" @click.stop="show_drawer" />
 
         <!-- Заголовок -->
-        <router-link v-if="this.$vuetify.breakpoint.name != 'xs'" to="/home" tag="div">
+        <nuxt-link v-if="this.$vuetify.breakpoint.name != 'xs'" to="/home" tag="div">
           <div class="pointer" @click="changeNavList('/home')">
             <v-toolbar-title class="display-1">{{getCurrentNavList.title}}</v-toolbar-title>
             <v-toolbar-title class="caption">{{getCurrentNavList.subtitle}}</v-toolbar-title>
           </div>
-        </router-link>
+        </nuxt-link>
 
         <!-- Выпадающее меню -->
 

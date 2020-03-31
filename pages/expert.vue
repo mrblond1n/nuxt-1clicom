@@ -1,21 +1,19 @@
 <template>
-  <v-content class="pa-0 content">
-    <v-layout column>
-      <section class="section">
-        <app-section-header :section_info="$store.state.expert.top_section_expert" />
-      </section>
-      <section
-        v-for="(section, i) in $store.state.expert.list_sections"
-        :key="i + 10"
-        class="section"
-      >
-        <app-section :section="section" :page="`e${i + 2}`"></app-section>
-      </section>
-      <section class="section">
-        <app-table :table_data="$store.state.tables.expert_how_much" page="et"></app-table>
-      </section>
-    </v-layout>
-  </v-content>
+  <v-layout column>
+    <section class="section">
+      <app-section-header :section_info="$store.state.expert.top_section_expert" />
+    </section>
+    <section
+      v-for="(section, i) in $store.state.expert.list_sections"
+      :key="i + 10"
+      class="section"
+    >
+      <app-section :section="section" :page="`e${i + 2}`"></app-section>
+    </section>
+    <section class="section">
+      <app-table :table_data="$store.state.tables.expert_how_much" page="et"></app-table>
+    </section>
+  </v-layout>
 </template>
 
 <script>

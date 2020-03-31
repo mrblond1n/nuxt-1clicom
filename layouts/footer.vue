@@ -120,7 +120,7 @@ export default {
     changeNavList(router_name) {
       console.log(router_name);
       this.$store
-        .dispatch("navigation/setCurrentNavList", router_name)
+        .dispatch("navigation/set_current_nav_list", router_name)
         .then(() => {
           this.$vuetify.goTo(0, { duration: 0 });
         });

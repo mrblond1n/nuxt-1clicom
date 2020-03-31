@@ -4,13 +4,14 @@
     <app-header @changeNavList="changeNavList" />
 
     <!-- CONTENT -->
-    <transition
+    <!-- <transition
       mode="out-in"
       enter-active-class="animated slideInLeft"
       leave-active-class="animated slideOutRight"
-    >
-      <router-view />
-    </transition>
+    >-->
+    <v-content class="pa-0 content">
+      <nuxt />
+    </v-content>
     <!-- FOOTER  -->
     <v-footer id="footer" class="footer" app padless @changeNavList="changeNavList">
       <app-footer />
@@ -86,10 +87,14 @@ export default {
     }
   },
   created() {
-    this.changeNavList(`/${this.$router.currentRoute.name.toLowerCase()}`);
+    if (this.$router.currentRoute.name === null) {
+      this.changeNavList(`/home}`);
+    } else {
+      this.changeNavList(`/${this.$router.currentRoute.name.toLowerCase()}`);
+    }
   },
   mounted() {
-    // component.$vuetify.goTo(0, { duration: 0 });
+    // console.log($axios);
   }
 };
 </script>
@@ -155,5 +160,9 @@ ul li {
 
 .list__item.reverse {
   border-bottom: 2px dotted #fff;
+}
+
+.pointer {
+  cursor: pointer;
 }
 </style>

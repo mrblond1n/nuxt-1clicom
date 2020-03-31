@@ -1,24 +1,22 @@
 <template>
-  <v-content class="pa-0 content">
-    <v-layout column>
-      <section class="section">
-        <app-section-header :section_info="$store.state.manager.top_section" />
-      </section>
-      <section
-        v-for="(section, i) in $store.state.manager.list_section"
-        :key="i + 10"
-        class="section"
-      >
-        <app-section :page="`m${i + 2}`" :section="section" />
-      </section>
-      <section class="section">
-        <app-section-possible page="mp" :section="$store.state.manager.possible_section" />
-      </section>
-      <section class="section">
-        <app-table page="mt" :table_data="$store.state.tables.manager_how_much" />
-      </section>
-    </v-layout>
-  </v-content>
+  <v-layout column>
+    <section class="section">
+      <app-section-header :section_info="$store.state.manager.top_section" />
+    </section>
+    <section
+      v-for="(section, i) in $store.state.manager.list_sections"
+      :key="i + 10"
+      class="section"
+    >
+      <app-section :page="`m${i + 2}`" :section="section" />
+    </section>
+    <section class="section">
+      <app-section-possible page="mp" :section="$store.state.manager.possible_section" />
+    </section>
+    <section class="section">
+      <app-table page="mt" :table_data="$store.state.tables.manager_how_much" />
+    </section>
+  </v-layout>
 </template>
 
 <script>
