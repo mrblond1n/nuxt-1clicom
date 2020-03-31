@@ -210,21 +210,8 @@ export default {
 };
 </script>
 
-<style lang="scss" >
-.v-application .display-1,
-.v-application .display-2,
-.v-application .display-3,
-.v-application .display-4,
-.v-application .headline,
-.v-application .title,
-.v-application .subtitle-1,
-.v-application .subtitle-2 {
-  font-family: "Bebas Neue" !important;
-}
-
+<style scoped>
 .section:first-child {
-  // background: url(../static/images/home/bg.jpg) center center / cover no-repeat;
-  background: #000;
   color: white;
 }
 

@@ -1,62 +1,64 @@
 <template>
-  <header>
-    <!-- LEFT -->
+  <client-only>
+    <header>
+      <!-- LEFT -->
 
-    <!-- TOP  -->
-    <v-app-bar app dark id="bar" :color="'rgba(0, 0, 0, .7)'">
-      <v-app-bar-nav-icon v-if="!style_width()" @click.stop="show_drawer" />
+      <!-- TOP  -->
+      <v-app-bar app dark id="bar" :color="'rgba(0, 0, 0, .7)'">
+        <v-app-bar-nav-icon v-show="!style_width()" @click.stop="show_drawer" />
 
-      <!-- Заголовок -->
-      <router-link v-if="this.$vuetify.breakpoint.name != 'xs'" to="/home" tag="div">
-        <div class="pointer" @click="changeNavList('/home')">
-          <v-toolbar-title class="display-1">{{getCurrentNavList.title}}</v-toolbar-title>
-          <v-toolbar-title class="caption">{{getCurrentNavList.subtitle}}</v-toolbar-title>
-        </div>
-      </router-link>
+        <!-- Заголовок -->
+        <router-link v-if="this.$vuetify.breakpoint.name != 'xs'" to="/home" tag="div">
+          <div class="pointer" @click="changeNavList('/home')">
+            <v-toolbar-title class="display-1">{{getCurrentNavList.title}}</v-toolbar-title>
+            <v-toolbar-title class="caption">{{getCurrentNavList.subtitle}}</v-toolbar-title>
+          </div>
+        </router-link>
 
-      <!-- Выпадающее меню -->
+        <!-- Выпадающее меню -->
 
-      <v-menu offset-y open-on-hover v-if="$router.history.current.name != 'Home'">
-        <template v-slot:activator="{ on }">
-          <v-btn
-            :small="$vuetify.breakpoint.xsOnly || $vuetify.breakpoint.smOnly"
-            color="warning"
-            style="margin-left: 20px"
-            dark
-            v-on="on"
-          >Наши сервисы</v-btn>
-        </template>
-        <v-list>
-          <v-list-item
-            v-for="(item, i) in list"
-            :key="i"
-            :to="set_path_for_link(item.path)"
-            @click="changeNavList(item.path)"
-          >
-            <v-list-item-title class="subtitle-1">{{ item.title }}</v-list-item-title>
-          </v-list-item>
-        </v-list>
-      </v-menu>
-      <v-spacer></v-spacer>
+        <v-menu offset-y open-on-hover v-if="$router.history.current.name != 'Home'">
+          <template v-slot:activator="{ on }">
+            <v-btn
+              :small="$vuetify.breakpoint.xsOnly || $vuetify.breakpoint.smOnly"
+              color="warning"
+              style="margin-left: 20px"
+              dark
+              v-on="on"
+            >Наши сервисы</v-btn>
+          </template>
+          <v-list>
+            <v-list-item
+              v-for="(item, i) in list"
+              :key="i"
+              :to="set_path_for_link(item.path)"
+              @click="changeNavList(item.path)"
+            >
+              <v-list-item-title class="subtitle-1">{{ item.title }}</v-list-item-title>
+            </v-list-item>
+          </v-list>
+        </v-menu>
+        <v-spacer></v-spacer>
 
-      <!-- Правая часть хедера -->
+        <!-- Правая часть хедера -->
 
-      <v-btn
-        :small="$vuetify.breakpoint.xsOnly || $vuetify.breakpoint.smOnly"
-        color="warning"
-        @click.stop="modal_window_call(getCurrentNavList.name)"
-      >
-        <v-icon :left="style_width()">mdi-phone</v-icon>
-        <template v-if="style_width()">заказать звонок</template>
-      </v-btn>
-      <v-btn v-if="!isUserLogin" text @click="modal_window_call('point_entry')">
-        <v-icon>mdi-account</v-icon>
-      </v-btn>
-      <v-btn v-else text @click="modal_window_call('point_exit')">
-        <v-icon>mdi-exit-to-app</v-icon>
-      </v-btn>
-    </v-app-bar>
-  </header>
+        <v-btn
+          :small="$vuetify.breakpoint.xsOnly || $vuetify.breakpoint.smOnly"
+          color="warning"
+          @click.stop="modal_window_call(getCurrentNavList.name)"
+        >
+          <v-icon :left="style_width()">mdi-phone</v-icon>
+          <template v-show="style_width()">заказать звонок</template>
+        </v-btn>
+        <v-btn v-if="!isUserLogin" text @click="modal_window_call('point_entry')">
+          <v-icon>mdi-account</v-icon>
+        </v-btn>
+        <v-btn v-else text @click="modal_window_call('point_exit')">
+          <v-icon>mdi-exit-to-app</v-icon>
+        </v-btn>
+      </v-app-bar>
+    </header>
+  </client-only>
 </template>
 
 <script>

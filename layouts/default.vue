@@ -2,7 +2,6 @@
   <v-app id="inspire">
     <app-navigation @changeNavList="changeNavList" />
     <app-header @changeNavList="changeNavList" />
-    <!-- <app-navigation @changeNavList="changeNavList" /> -->
 
     <!-- CONTENT -->
     <transition
@@ -14,11 +13,11 @@
     </transition>
     <!-- FOOTER  -->
     <v-footer id="footer" class="footer" app padless @changeNavList="changeNavList">
-      <app-footer></app-footer>
+      <app-footer />
     </v-footer>
 
     <!-- SNACKBARS -->
-    <!-- <template>
+    <template>
       <v-snackbar
         v-if="snackbar.message"
         :multi-line="true"
@@ -32,7 +31,7 @@
           <v-icon center>mdi-close</v-icon>
         </v-btn>
       </v-snackbar>
-    </template>-->
+    </template>
     <!-- MODAL -->
     <app-modal v-if="$store.state.shared.modal" />
   </v-app>
@@ -69,10 +68,10 @@ export default {
   },
   computed: {
     loading() {
-      return this.$store.getters.loading;
+      return this.$store.state.shared.loading;
     },
     snackbar() {
-      return this.$store.getters.snackbar;
+      return this.$store.state.shared.snackbar;
     }
   },
   methods: {
@@ -80,7 +79,7 @@ export default {
       return `rgba(${color}, .7)`;
     },
     closeSnackbar() {
-      // this.$store.dispatch("clearSnackbar");
+      this.$store.dispatch("shared/clearSnackbar");
     },
     changeNavList(router_name) {
       this.$store.commit("navigation/set_current_nav_list", router_name);
@@ -123,7 +122,7 @@ section,
 .v-application .title,
 .v-application .subtitle-1,
 .v-application .subtitle-2 {
-  font-family: "Bebas Neue";
+  font-family: "Bebas Neue" !important;
 }
 
 .v-application ul {
