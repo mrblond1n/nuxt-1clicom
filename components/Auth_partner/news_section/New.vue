@@ -33,7 +33,10 @@ export default {
   },
   methods: {
     show_modal() {
-      this.$store.dispatch("show_modal", { name: "new_info", info: this.card });
+      this.$store.dispatch("shared/show_modal", {
+        name: "new_info",
+        info: this.card
+      });
     }
   }
 };

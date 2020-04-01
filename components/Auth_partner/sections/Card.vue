@@ -42,7 +42,7 @@ export default {
   },
   methods: {
     modal_window_call() {
-      this.$store.dispatch("show_modal", {
+      this.$store.dispatch("shared/show_modal", {
         id: "p5",
         txt: "Заявка на обучение"
       });

@@ -92,16 +92,18 @@ export default {
   },
   computed: {
     access_to_admin() {
-      return this.$store.getters.isSuperUser;
+      console.log(this.$store.getters["user/super_user_is_set"]);
+
+      return this.$store.getters["user/super_user_is_set"];
     },
     news() {
-      return this.$store.getters.news;
+      return this.$store.getters["auth_user_page/section_news"];
     },
     sections() {
-      return this.$store.getters.sections;
+      return this.$store.getters["auth_user_page/sections"];
     },
     getServicesTable() {
-      return this.$store.getters.getServicesTable;
+      return this.$store.state.tables.services;
     }
   },
   mounted() {
