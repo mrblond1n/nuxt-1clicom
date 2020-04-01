@@ -1,3 +1,9 @@
+class User {
+  constructor(sid) {
+    this.sid = sid;
+  }
+}
+
 export default {
   async user_login({ commit }, user) {
     // console.log(some);
@@ -17,10 +23,10 @@ export default {
       console.log(resp.data);
 
       if (resp.data.data != null) {
-        // localStorage.sid = resp.data.data.SID;
-        // commit("set_user", new User(resp.data.data.SID));
-        // commit("setLoading", false);
-        // return resp.data.data.SID;
+        localStorage.sid = resp.data.data.SID;
+        commit("user/set_user", new User(resp.data.data.SID), { root: true });
+        commit("shared/set_loading", false, { root: true });
+        return resp.data.data.SID;
       } else {
         if (resp.data.request.code === 3 || resp.data.request.code === 4) {
           commit(
@@ -107,7 +113,7 @@ export default {
             commit("user/set_super_user", new User(localStorage.sid));
           }
         });
-        commit("user/set_user", new User(localStorage.sid));
+        commit("user/set_user", new User(localStorage.sid), { root: true });
         commit("shared/set_loading", false, { root: true });
       }
     } catch (error) {
@@ -124,7 +130,7 @@ export default {
     let authLogout_url = `${process.env.AUTH_URL}/logout/`;
     this.$axios.post(authLogout_url, localStorage.sid);
     localStorage.removeItem("sid");
-    commit("user/set_super_user", null);
-    commit("user/set_user", null);
+    commit("user/set_super_user", null, { root: true });
+    commit("user/set_user", null), { root: true };
   }
 };

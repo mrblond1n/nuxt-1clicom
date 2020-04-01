@@ -1,7 +1,7 @@
 <template>
   <!-- LEFT -->
   <v-navigation-drawer
-    v-model="$store.state.shared.drawer"
+    v-model="drawer"
     :permanent="style_width()"
     :color="'rgba(0, 0, 0, .7)'"
     :width="style_width() ? '120' : ''"
@@ -9,8 +9,8 @@
     dark
     app
   >
-    <!-- <v-list-item color="white" link to="/home" @click="changeNavList('/home')"> -->
-    <v-list-item color="white" link to="/home" @click="changeNavList('/home')">
+    <!-- <v-list-item color="white" link to="/home" @click="change_nav_list('/home')"> -->
+    <v-list-item color="white" link to="/home" @click="change_nav_list('/home')">
       <v-list-item-content>
         <v-list-item-title class="text-center">
           <v-img width="50px" style="margin: 0 auto" :src="require('~/static/logo__1clicom.png')"></v-img>
@@ -19,14 +19,14 @@
     </v-list-item>
 
     <v-list>
-      <template v-if="$store.state.navigation.current_navigation_list.name === 'home'">
+      <template v-if="current_navigation_list.name === 'home'">
         <v-list-item
           color="white"
           link
-          v-for="(item, i) in $store.state.navigation.current_navigation_list.list"
+          v-for="(item, i) in current_navigation_list.list"
           :to="set_path_for_link(item.path)"
           :key="i"
-          @click="changeNavList(item.path)"
+          @click="change_nav_list(item.path)"
         >
           <v-list-item-content>
             <v-list-item-title class="subtitle-1 navigation_link">{{item.title}}</v-list-item-title>
@@ -35,9 +35,9 @@
       </template>
 
       <template v-else>
-        <template v-for="(item, index) in $store.state.navigation.current_navigation_list.list">
+        <template v-for="(item, index) in current_navigation_list.list">
           <v-list-item
-            v-if="!item.root || (item.root && isSuperUser)"
+            v-if="!item.root || (item.root && super_user_is_set)"
             color="white"
             @click="item.id ? modal_window_call(item.id) : $vuetify.goTo(`#section_${index}`, $store.state.shared.option_scroll)"
             link
@@ -55,11 +55,19 @@
 
 <script>
 export default {
-  data() {
-    return {
-      drawer: false,
-      items: [{ title: "sd", icon: "mdi-lock" }]
-    };
+  computed: {
+    current_navigation_list() {
+      return this.$store.getters["navigation/current_navigation_list"];
+    },
+    super_user_is_set() {
+      return this.$store.getters["user/super_user_is_set"];
+    },
+    drawer: {
+      get() {
+        return this.$store.getters["shared/drawer"];
+      },
+      set() {}
+    }
   },
   methods: {
     style_width() {
@@ -70,11 +78,11 @@ export default {
         return false;
       return true;
     },
-    changeNavList(router_name) {
+    change_nav_list(router_name) {
       this.$store.state.user.user_setted && router_name === "/partner_page"
         ? (router_name = "/auth_partner")
         : router_name;
-      this.$emit("changeNavList", router_name);
+      this.$store.dispatch("navigation/set_current_nav_list", router_name);
     },
     set_path_for_link(path) {
       // Проверка на логин юзера
@@ -88,7 +96,7 @@ export default {
         this.$store.dispatch("user/logoutUser").then(() => {
           this.$router.push("/partner_page");
         });
-        this.$emit("changeNavList", "partner_page");
+        this.$store.dispatch("navigation/set_current_nav_list", "partner_page");
         return;
       }
       if (name == "expert_1c") {

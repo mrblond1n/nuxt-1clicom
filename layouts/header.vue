@@ -9,9 +9,9 @@
 
         <!-- Заголовок -->
         <nuxt-link v-if="this.$vuetify.breakpoint.name != 'xs'" to="/home" tag="div">
-          <div class="pointer" @click="changeNavList('/home')">
-            <v-toolbar-title class="display-1">{{getCurrentNavList.title}}</v-toolbar-title>
-            <v-toolbar-title class="caption">{{getCurrentNavList.subtitle}}</v-toolbar-title>
+          <div class="pointer" @click="change_nav_list('/home')">
+            <v-toolbar-title class="display-1">{{current_navigation_list.title}}</v-toolbar-title>
+            <v-toolbar-title class="caption">{{current_navigation_list.subtitle}}</v-toolbar-title>
           </div>
         </nuxt-link>
 
@@ -32,7 +32,7 @@
               v-for="(item, i) in list"
               :key="i"
               :to="set_path_for_link(item.path)"
-              @click="changeNavList(item.path)"
+              @click="change_nav_list(item.path)"
             >
               <v-list-item-title class="subtitle-1">{{ item.title }}</v-list-item-title>
             </v-list-item>
@@ -41,11 +41,10 @@
         <v-spacer></v-spacer>
 
         <!-- Правая часть хедера -->
-
         <v-btn
           :small="$vuetify.breakpoint.xsOnly || $vuetify.breakpoint.smOnly"
           color="warning"
-          @click.stop="modal_window_call(getCurrentNavList.name)"
+          @click.stop="modal_window_call(current_navigation_list.name)"
         >
           <v-icon :left="style_width()">mdi-phone</v-icon>
           <template v-show="style_width()">заказать звонок</template>
@@ -78,10 +77,12 @@ export default {
   },
   computed: {
     user_is_set() {
+      console.log(this.$store.getters["user/user_is_set"]);
+
       return this.$store.getters["user/user_is_set"];
     },
-    getCurrentNavList() {
-      return this.$store.state.navigation.current_navigation_list;
+    current_navigation_list() {
+      return this.$store.getters["navigation/current_navigation_list"];
     }
   },
   methods: {
@@ -90,11 +91,11 @@ export default {
       if (this.user_is_set && path === "/partner_page") return "/auth_partner";
       return path;
     },
-    changeNavList(router_name) {
+    change_nav_list(router_name) {
       this.user_is_set && router_name === "/partner_page"
         ? (router_name = "/auth_partner")
         : router_name;
-      this.$emit("changeNavList", router_name);
+      this.$store.dispatch("navigation/set_current_nav_list", router_name);
     },
     style_width() {
       if (
@@ -114,7 +115,7 @@ export default {
           this.drawer = false;
           if (this.$router.history.current.name === "Auth_partner") {
             this.$router.push("/partner_page").then(() => {
-              this.changeNavList("/partner_page");
+              this.change_nav_list("/partner_page");
             });
           }
         });

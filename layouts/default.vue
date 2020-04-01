@@ -1,19 +1,14 @@
 <template>
   <v-app id="inspire">
-    <app-navigation @changeNavList="changeNavList" />
-    <app-header @changeNavList="changeNavList" />
+    <app-navigation @change_nav_list="change_nav_list" />
+    <app-header @change_nav_list="change_nav_list" />
 
     <!-- CONTENT -->
-    <!-- <transition
-      mode="out-in"
-      enter-active-class="animated slideInLeft"
-      leave-active-class="animated slideOutRight"
-    >-->
     <v-content class="pa-0 content">
       <nuxt />
     </v-content>
     <!-- FOOTER  -->
-    <v-footer id="footer" class="footer" app padless @changeNavList="changeNavList">
+    <v-footer id="footer" class="footer" app padless @change_nav_list="change_nav_list">
       <app-footer />
     </v-footer>
 
@@ -69,10 +64,10 @@ export default {
   },
   computed: {
     loading() {
-      return this.$store.state.shared.loading;
+      return this.$store.getters["shared/loading"];
     },
     snackbar() {
-      return this.$store.state.shared.snackbar;
+      return this.$store.getters["shared/snackbar"];
     }
   },
   methods: {
@@ -82,21 +77,19 @@ export default {
     closeSnackbar() {
       this.$store.dispatch("shared/clear_snackbar");
     },
-    changeNavList(router_name) {
-      this.$store.commit("navigation/set_current_nav_list", router_name);
+    change_nav_list(router_name) {
+      this.$store.dispatch("navigation/set_current_nav_list", router_name);
     }
   },
   created() {
     if (this.$router.currentRoute.name === null) {
-      this.changeNavList(`/home}`);
+      this.change_nav_list(`/home}`);
     } else {
-      this.changeNavList(`/${this.$router.currentRoute.name.toLowerCase()}`);
+      this.change_nav_list(`/${this.$router.currentRoute.name.toLowerCase()}`);
     }
   },
   mounted() {
     // console.log($axios);
-    console.log(process.env.api);
-    console.log(process.env.api);
   }
 };
 </script>

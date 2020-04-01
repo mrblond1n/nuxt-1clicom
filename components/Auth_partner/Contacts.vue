@@ -1,7 +1,7 @@
 <template>
   <section>
     <v-container>
-      <v-layout column justify-center>
+      <v-layout column justify-center class="text-center">
         <h3 class="display-2">Контакты отдела по работе с партнерами</h3>
         <v-layout column justify-center>
           <div class="headline my-5">
