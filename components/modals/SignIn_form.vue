@@ -62,7 +62,7 @@ export default {
         };
         this.$store.dispatch("user/user_login", user).then(res => {
           if (!res) return;
-          this.$store.dispatch("get_user_info", res);
+          this.$store.dispatch("user/get_user_info", res);
           this.$store.dispatch("shared/show_modal", false);
           this.$router.push("/auth_partner");
           this.$store.dispatch(

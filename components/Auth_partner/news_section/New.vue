@@ -3,7 +3,7 @@
     <v-img
       class="white--text align-end"
       height="200px"
-      :src="require('@/assets/images/partner_news/' + card.src)"
+      :src="require('~/static/images/partner_news/' + card.src)"
     ></v-img>
 
     <v-layout column justify-space-between style="height: 200px">

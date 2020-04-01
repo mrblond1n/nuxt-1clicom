@@ -93,10 +93,13 @@ export default {
     modal_window_call(name) {
       // Клик по кнопке заказа звонка в шапке и кнопке Login
       if (name === "point_exit") {
-        this.$store.dispatch("user/logoutUser").then(() => {
+        this.$store.dispatch("user/user_logout").then(() => {
           this.$router.push("/partner_page");
         });
-        this.$store.dispatch("navigation/set_current_nav_list", "partner_page");
+        this.$store.dispatch(
+          "navigation/set_current_nav_list",
+          "/partner_page"
+        );
         return;
       }
       if (name == "expert_1c") {

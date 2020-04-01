@@ -42,6 +42,7 @@ import appModal from "@/components/modals/Modal";
 import { mapState } from "vuex";
 
 export default {
+  middleware: "auto_login",
   components: {
     appHeader,
     appNavigation,

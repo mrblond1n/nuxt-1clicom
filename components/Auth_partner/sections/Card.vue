@@ -2,7 +2,7 @@
   <v-card width="300px" style="background: transparent; height: 500px" elevation="0">
     <v-layout column align-center justify-space-between style="height: 100%">
       <v-card-title class="display-1" v-html="card.title"></v-card-title>
-      <svg-icon :name="card.src" class="svg" />
+      <!-- <svg-icon :name="card.src" class="svg" /> -->
       <v-card-actions style="width: 100%">
         <v-btn
           outlined
@@ -28,11 +28,11 @@
 </template>
 
 <script>
-import SvgIcon from "@/components/Mist/SvgIcon";
+// import SvgIcon from "@/components/Mist/SvgIcon";
 
 export default {
   components: {
-    SvgIcon
+    // SvgIcon
   },
   props: {
     card: {

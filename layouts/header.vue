@@ -77,8 +77,6 @@ export default {
   },
   computed: {
     user_is_set() {
-      console.log(this.$store.getters["user/user_is_set"]);
-
       return this.$store.getters["user/user_is_set"];
     },
     current_navigation_list() {
@@ -111,12 +109,14 @@ export default {
     modal_window_call(name) {
       // Клик по кнопке навигации Logout
       if (name === "point_exit") {
-        this.$store.dispatch("shared/logoutUser").then(() => {
-          this.drawer = false;
+        this.$store.dispatch("user/user_logout").then(() => {
+          this.$store.dispatch("shared/show_drawer", false);
           if (this.$router.history.current.name === "Auth_partner") {
-            this.$router.push("/partner_page").then(() => {
-              this.change_nav_list("/partner_page");
-            });
+            this.$router.push("/partner_page");
+            this.change_nav_list("/partner_page");
+          } else if (this.$router.history.current.name === null) {
+            this.$router.push("/home");
+            this.change_nav_list("/home");
           }
         });
         return;
