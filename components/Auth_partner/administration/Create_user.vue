@@ -64,11 +64,9 @@ export default {
         Object.entries(data).forEach(([key, value]) => {
           formData.append(key, value);
         });
-        this.$store
-          .dispatch("send_data", { formData, task: data.task })
-          .then(() => {
-            this.$refs.form.reset();
-          });
+        this.$store.dispatch("send", { formData, task: data.task }).then(() => {
+          this.$refs.form.reset();
+        });
       }
     },
     generate_pass() {

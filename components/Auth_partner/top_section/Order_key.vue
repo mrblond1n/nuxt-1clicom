@@ -74,15 +74,6 @@ export default {
       this.$refs.form.reset();
     },
     submit() {
-      Object.values(this.test_order_key_form).forEach(part => {
-        if (!part) return;
-        Object.values(part).forEach(field => {
-          return field.replace(/<[^>]+>/g, "");
-        });
-      });
-
-      console.log(this.test_order_key_form);
-
       if (this.$refs.form.validate()) {
         this.test_order_key_form.type = this.radios;
         let data;

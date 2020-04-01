@@ -3,7 +3,7 @@ export default val => {
     return val.replace(/<[^>]+>/g, "");
   } else if (typeof val === "object") {
     let newObj = {};
-    Object.entries(obj).forEach(([key, value]) => {
+    Object.entries(val).forEach(([key, value]) => {
       if (typeof value === "string") {
         newObj[key] = value.replace(/<[^>]+>/g, "");
       } else if (typeof value === "object") {
