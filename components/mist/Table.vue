@@ -27,7 +27,10 @@
               class="text-center"
             >
               {{cell.text}}
-              <v-icon style="font-size: 14px;" :color="set_color(cell.icon)">{{`mdi-${cell.icon}`}}</v-icon>
+              <v-icon
+                :size="cell.icon === 'currency-rub' ? '14' : '18'"
+                :color="set_color(cell.icon)"
+              >{{`mdi-${cell.icon}`}}</v-icon>
               <br />
               <div style="font-size: 10px">{{cell.subtext}}</div>
             </td>

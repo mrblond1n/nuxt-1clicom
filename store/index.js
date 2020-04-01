@@ -1,9 +1,6 @@
 export const strict = false;
 
 export const actions = {
-  nuxtServerInit() {
-    console.log("пошел нахер");
-  },
   async send({ commit }, payload) {
     let user_control_url = `${process.env.USER_CONTROL}`;
     let send_mail_url = `${process.env.MAIL_URL}`;

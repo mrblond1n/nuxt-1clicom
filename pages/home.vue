@@ -4,7 +4,7 @@
       class="section section__header-home"
       :style="{'background': 'url(' + require('~/static/images/home/bg.jpg') + ') center center / cover no-repeat'}"
     >
-      <v-container>
+      <v-container data-aos>
         <v-layout class="text-center" column>
           <v-layout column class="my-5">
             <h1 class="display-4 mb-3">зао лик</h1>
@@ -40,7 +40,7 @@
     </section>
 
     <section style="min-height: 0px">
-      <v-container>
+      <v-container data-aos>
         <v-layout justify-center column align-center style="margin-top: -180px">
           <v-layout row wrap justify-center class="my-5">
             <router-link
@@ -74,7 +74,7 @@
     </section>
 
     <section class="section">
-      <v-container>
+      <v-container data-aos>
         <v-layout column>
           <h3 class="display-1 text-center">Кому это нужно</h3>
           <v-layout wrap justify-center>
@@ -111,7 +111,7 @@
     </section>
 
     <section class="section">
-      <v-container>
+      <v-container data-aos>
         <v-layout column>
           <h3 class="display-1 text-center">Источники данных</h3>
           <v-layout wrap justify-center>
@@ -139,7 +139,7 @@
     </section>
 
     <section class="section">
-      <v-container>
+      <v-container data-aos>
         <v-layout column justify-center>
           <h3 class="display-1 text-center">Новости</h3>
           <v-layout wrap justify-center align-center>
