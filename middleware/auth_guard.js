@@ -1,5 +1,5 @@
 export default function({ store, redirect }) {
-  if (store.getters.user_is_set === null) {
-    redirect("/partner_page");
+  if (store.state.user.user === null) {
+    return redirect("/partner_page");
   }
 }

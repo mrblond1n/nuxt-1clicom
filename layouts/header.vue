@@ -6,7 +6,6 @@
       <!-- TOP  -->
       <v-app-bar app dark id="bar" :color="'rgba(0, 0, 0, .7)'">
         <v-app-bar-nav-icon v-show="!style_width()" @click.stop="show_drawer" />
-
         <!-- Заголовок -->
         <nuxt-link v-if="this.$vuetify.breakpoint.name != 'xs'" to="/home" tag="div">
           <div class="pointer" @click="change_nav_list('/home')">
@@ -16,7 +15,6 @@
         </nuxt-link>
 
         <!-- Выпадающее меню -->
-
         <v-menu offset-y open-on-hover v-if="$router.history.current.name != 'Home'">
           <template v-slot:activator="{ on }">
             <v-btn
@@ -111,10 +109,10 @@ export default {
       if (name === "point_exit") {
         this.$store.dispatch("user/user_logout").then(() => {
           this.$store.dispatch("shared/show_drawer", false);
-          if (this.$router.history.current.name === "Auth_partner") {
+          if (this.$route.name === "auth_partner") {
             this.$router.push("/partner_page");
             this.change_nav_list("/partner_page");
-          } else if (this.$router.history.current.name === null) {
+          } else if (this.$route.name === null) {
             this.$router.push("/home");
             this.change_nav_list("/home");
           }

@@ -106,7 +106,7 @@ export default {
       formData.append("subject", `1clicom: ${this.modal.txt}`);
       formData.append("type", "simple");
 
-      this.$store.dispatch("shared/send_data", formData).then(() => {
+      this.$store.dispatch("send", formData).then(() => {
         this.$store.dispatch("shared/show_modal", false);
       });
     }

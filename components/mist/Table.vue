@@ -1,5 +1,5 @@
 <template>
-  <v-container data-aos="fade-in">
+  <v-container data-aos>
     <v-layout column justify-center align-center>
       <h3 class="display-2 text-center mb-5">{{table_data.title}}</h3>
       <v-simple-table
@@ -92,7 +92,7 @@ export default {
   },
   methods: {
     modal_window_call(index) {
-      this.$store.dispatch("show_modal", {
+      this.$store.dispatch("shared/show_modal", {
         id: `${this.page}_${index + 1}`,
         txt: "Заявка на обратный звонок"
       });

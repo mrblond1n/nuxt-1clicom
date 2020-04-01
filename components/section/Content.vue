@@ -1,15 +1,15 @@
 <template>
   <!-- Обычная секция -->
-  <v-container :data-aos="Number(page.charAt(1)) % 2 === 0 ? 'fade-right': 'fade-left'">
+  <v-container data-aos>
     <v-layout column align-center justify-space-around>
-      <v-layout column>
-        <h3 class="display-2">{{section.title}}</h3>
-        <h4 class="headline">{{section.subtitle}}</h4>
+      <v-layout column justify-center align-center>
+        <h3 class="display-2 text-center">{{section.title}}</h3>
+        <h4 class="headline text-center">{{section.subtitle}}</h4>
       </v-layout>
       <v-layout
         align-center
         justify-center
-        :wrap="$vuetify.breakpoint.xsOnly || $vuetify.breakpoint.smOnly"
+        wrap
         :reverse="section.method === 'rtl'"
         style="width: 100%"
       >
@@ -19,7 +19,7 @@
             :src="require(`~/static/images/lists/${section.src}.png`)"
           />
         </v-layout>
-        <v-layout column align-center class="ma-5">
+        <v-layout column align-center class="ma-5" style="width: 45%">
           <ul class="text-left">
             <li
               class="my-2"

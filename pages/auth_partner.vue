@@ -31,7 +31,7 @@
           :section_info="section"
         ></app-sections>
 
-        <section class="section">
+        <section class="section partner">
           <app-table page="pt_1" :table_data="getServicesTable"></app-table>
         </section>
 
@@ -53,6 +53,7 @@ import appTable from "~/components/mist/Table";
 import set_section_id from "~/library/set_section_id";
 
 export default {
+  middleware: "auth_guard",
   components: {
     appTopSection,
     appNewsSection,
@@ -92,8 +93,6 @@ export default {
   },
   computed: {
     access_to_admin() {
-      console.log(this.$store.getters["user/super_user_is_set"]);
-
       return this.$store.getters["user/super_user_is_set"];
     },
     news() {

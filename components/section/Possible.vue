@@ -1,6 +1,6 @@
 <template>
   <!-- Секция о возможностях продукта -->
-  <v-container data-aos="fade">
+  <v-container data-aos>
     <v-layout justify-center align-center column class="text-center">
       <h3 class="display-2 mb-5">{{section.title}}</h3>
       <ul class="text-left">

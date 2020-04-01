@@ -36,14 +36,7 @@
       </v-btn-toggle>
 
       <!-- CONTENT -->
-      <v-layout
-        class="mt-5"
-        align-center
-        justify-center
-        reverse
-        :wrap="$vuetify.breakpoint.xsOnly || $vuetify.breakpoint.smOnly"
-        style="width: 100%;"
-      >
+      <v-layout class="mt-5" align-center justify-center reverse wrap style="width: 100%;">
         <!-- IMAGE -->
         <transition
           mode="out-in"

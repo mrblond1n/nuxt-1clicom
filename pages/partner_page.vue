@@ -39,13 +39,20 @@
 </template>
 
 <script>
-import appContactsSection from "@/components/Auth_partner/Contacts";
+import appContactsSection from "~/components/Auth_partner/Contacts";
 
-import set_section_id from "@/library/set_section_id";
+import set_section_id from "~/library/set_section_id";
 export default {
+  middleware({ store, redirect }) {
+    // If the user is not authenticated
+    if (store.state.user.user !== null) {
+      return redirect("/auth_partner");
+    }
+  },
   components: {
     appContactsSection
   },
+
   data() {
     return {
       section: [
@@ -105,15 +112,6 @@ export default {
   },
   mounted() {
     set_section_id(this);
-    // this.$store.dispatch("autoLoginUser").then(() => {
-    //   if (this.$store.getters.isUserLogin) {
-    //     this.$router.push("/auth_partner");
-    //     this.$store.dispatch(
-    //       "navigation/set_current_nav_list",
-    //       "/auth_partner"
-    //     );
-    //   }
-    // });
   }
 };
 </script>
@@ -122,5 +120,14 @@ export default {
 .description__list {
   border: 1px solid grey;
   border-radius: 5px;
+}
+section.partner {
+  background: #fff;
+  color: black;
+}
+
+.section.partner:nth-child(odd) {
+  background: #c5cae9;
+  color: black;
 }
 </style>

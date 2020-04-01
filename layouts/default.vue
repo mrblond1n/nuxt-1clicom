@@ -42,7 +42,12 @@ import appModal from "@/components/modals/Modal";
 import { mapState } from "vuex";
 
 export default {
-  middleware: "auto_login",
+  middleware() {
+    // document.querySelectorAll(".section").forEach((el, index) => {
+    //   el.setAttribute("id", `section_${index}`);
+    //   console.log(el);
+    // });
+  },
   components: {
     appHeader,
     appNavigation,
@@ -90,7 +95,10 @@ export default {
     }
   },
   mounted() {
-    // console.log($axios);
+    this.$store.dispatch("user/auto_user_login");
+    if (this.$route.name && this.$store.getters["user/user_is_set"]) {
+      this.$router.push("/auth_partner");
+    }
   }
 };
 </script>
