@@ -57,7 +57,7 @@ export default {
     try {
       let resp = await this.$axios.post(authStatus_url, dataForCheck);
       if (resp.data.request.code !== 0) {
-        commit("shared/set_loading", false, { root: true });
+        return false;
       } else {
         process.env.ADMINS.split(",").map(login => {
           if (login === resp.data.data.login.toLowerCase()) {
@@ -66,6 +66,7 @@ export default {
           }
         });
         commit("set_user", new User(localStorage.sid));
+        return true;
       }
     } catch (error) {
       commit(

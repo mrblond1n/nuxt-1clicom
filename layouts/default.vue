@@ -42,11 +42,9 @@ import appModal from "@/components/modals/Modal";
 import { mapState } from "vuex";
 
 export default {
-  middleware() {
-    // document.querySelectorAll(".section").forEach((el, index) => {
-    //   el.setAttribute("id", `section_${index}`);
-    //   console.log(el);
-    // });
+  middleware({ route, store }) {
+    store.dispatch("navigation/set_current_nav_list_test", route.path);
+    store.dispatch("shared/show_drawer", false);
   },
   components: {
     appHeader,
@@ -95,10 +93,16 @@ export default {
     }
   },
   mounted() {
-    this.$store.dispatch("user/auto_user_login");
-    if (this.$route.name && this.$store.getters["user/user_is_set"]) {
-      this.$router.push("/auth_partner");
-    }
+    this.$store.dispatch("user/auto_user_login").then(res => {
+      if (!res) return;
+      if (this.$route.name === "partner_page") {
+        this.$router.push("/auth_partner");
+        this.$store.dispatch(
+          "navigation/set_current_nav_list",
+          "/auth_partner"
+        );
+      }
+    });
   }
 };
 </script>

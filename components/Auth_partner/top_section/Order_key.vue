@@ -66,7 +66,7 @@ export default {
     //   return this.$store.getters.rules;
     // },
     test_order_key_form() {
-      return this.$store.getters.test_order_key_form;
+      return this.$store.getters["auth_user_forms_key/test_order_key_form"];
     }
   },
   methods: {
@@ -74,42 +74,66 @@ export default {
       this.$refs.form.reset();
     },
     submit() {
+      Object.values(this.test_order_key_form).forEach(part => {
+        if (!part) return;
+        Object.values(part).forEach(field => {
+          return field.replace(/<[^>]+>/g, "");
+        });
+      });
+
+      console.log(this.test_order_key_form);
+
       if (this.$refs.form.validate()) {
         this.test_order_key_form.type = this.radios;
-        let data = {
-          TITLE: `1clicom.ru: Заявка на ключ от ${
-            this.toggle === 0 ? "дистрибьютора" : "партнера"
-          }`,
-          MAIN_TYPE:
-            this.toggle === 0
-              ? "<b><i>Дистрибьютор</i></b>"
-              : "<b><i>Партнер</i></b>",
-          MAIN_TITLE: `<b>Наименование:</b> ${this.test_order_key_form.main.title}`,
-          MAIN_MAIL: `<b>Почта:</b> ${this.test_order_key_form.main.mail}`,
-          MAIN_NAME: `<b style="margin-bottom: 10px">ФИО:</b> ${this.test_order_key_form.main.name}`,
-          EXTRA_TYPE:
-            this.toggle === 0
-              ? "<b><i>Партнер</i></b>"
-              : "<b><i>Клиент</i></b>",
-          EXTRA_TITLE: `<b>Наименование:</b> ${this.test_order_key_form.extra.title}`,
-          EXTRA_MAIL: `<b>Почта:</b> ${this.test_order_key_form.extra.mail}`,
-          MAIN_SERVICE: `<b style="margin-top: 10px">Выбранная лицензия:</b> лицензия на право использования программы для ЭВМ ${this.render_message(
-            this.test_order_key_form.services.select_main.replace(
-              "Лицензия ",
-              ""
-            )
-          )} на 1 (одно) основное рабочее место сроком на один год`,
-          EXTRA_SERVICE: `<b>Выбранная лицензия:</b> доп. лицензия к основному рабочему месту на право использования программы для ЭВМ ${this.render_message(
-            this.test_order_key_form.services.select_extra.replace(
-              "Доп. лицензия ",
-              ""
-            )
-          )} сроком на один год ${
-            this.test_order_key_form.services.select_places
-              ? "на " + this.test_order_key_form.services.select_places.text
-              : ""
-          }`
-        };
+        let data;
+        try {
+          data = {
+            TITLE: `1clicom.ru: Заявка на ключ от ${
+              this.toggle === 0 ? "дистрибьютора" : "партнера"
+            }`,
+            MAIN_TYPE:
+              this.toggle === 0
+                ? "<b><i>Дистрибьютор</i></b>"
+                : "<b><i>Партнер</i></b>",
+            MAIN_TITLE: `<b>Наименование:</b> ${this.test_order_key_form.main.title}`,
+            MAIN_MAIL: `<b>Почта:</b> ${this.test_order_key_form.main.mail}`,
+            MAIN_NAME: `<b style="margin-bottom: 10px">ФИО:</b> ${this.test_order_key_form.main.name}`
+          };
+          if (Object.keys(this.test_order_key_form.extra).length != 0) {
+            data.EXTRA_TYPE =
+              this.toggle === 0
+                ? "<b><i>Партнер</i></b>"
+                : "<b><i>Клиент</i></b>";
+            data.EXTRA_TITLE = `<b>Наименование:</b> ${this.test_order_key_form.extra.title}`;
+            data.EXTRA_MAIL = `<b>Почта:</b> ${this.test_order_key_form.extra.mail}`;
+          }
+          if (Object.keys(this.test_order_key_form.services).length != 0) {
+            data.MAIN_SERVICE = `<b style="margin-top: 10px">Выбранная лицензия:</b> лицензия на право использования программы для ЭВМ ${this.render_message(
+              this.test_order_key_form.services.select_main.replace(
+                "Лицензия ",
+                ""
+              )
+            )} на 1 (одно) основное рабочее место сроком на один год`;
+            data.EXTRA_SERVICE = `<b>Выбранная лицензия:</b> доп. лицензия к основному рабочему месту на право использования программы для ЭВМ ${this.render_message(
+              this.test_order_key_form.services.select_extra.replace(
+                "Доп. лицензия ",
+                ""
+              )
+            )} сроком на один год ${
+              this.test_order_key_form.services.select_places
+                ? "на " + this.test_order_key_form.services.select_places.text
+                : ""
+            }`;
+          }
+        } catch (error) {
+          console.log(error);
+          this.$store.dispatch("shared/set_snackbar", {
+            message: "Произошла ошибка, попробуйте позже",
+            color: "error"
+          });
+          return;
+        }
+
         let formData = new FormData();
         let text = "";
         Object.values(data).forEach(value => {
@@ -119,8 +143,7 @@ export default {
         formData.append("text", text);
         formData.append("subject", "1clicom: заказ ключа");
         formData.append("type", "partner");
-
-        this.$store.dispatch("send_data", formData).then(() => {
+        this.$store.dispatch("send", formData).then(() => {
           this.$refs.form.reset();
         });
       }

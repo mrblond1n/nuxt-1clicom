@@ -108,7 +108,6 @@ export default {
       // Клик по кнопке навигации Logout
       if (name === "point_exit") {
         this.$store.dispatch("user/user_logout").then(() => {
-          this.$store.dispatch("shared/show_drawer", false);
           if (this.$route.name === "auth_partner") {
             this.$router.push("/partner_page");
             this.change_nav_list("/partner_page");

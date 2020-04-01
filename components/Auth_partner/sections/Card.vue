@@ -1,8 +1,9 @@
 <template>
   <v-card width="300px" style="background: transparent; height: 500px" elevation="0">
     <v-layout column align-center justify-space-between style="height: 100%">
-      <v-card-title class="display-1" v-html="card.title"></v-card-title>
+      <v-card-title class="display-1" v-html="card.title" />
       <!-- <svg-icon :name="card.src" class="svg" /> -->
+      <v-img :src="require(`~/static/images/icons/${card.src}.svg`)" class="svg" contain />
       <v-card-actions style="width: 100%">
         <v-btn
           outlined

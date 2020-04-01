@@ -16,8 +16,10 @@
     "@nuxtjs/axios": "^5.3.6",
     "@nuxtjs/dotenv": "^1.4.1",
     "@nuxtjs/redirect-module": "^0.3.1",
+    "@nuxtjs/svg": "^0.1.6",
     "aos": "^2.3.4",
     "nuxt": "^2.0.0",
+    "nuxtjs-mdi-font": "^1.0.2",
     "vue-animate-number": "^0.4.2",
     "vue-pdf": "^4.0.8",
     "vue-the-mask": "^0.11.1"

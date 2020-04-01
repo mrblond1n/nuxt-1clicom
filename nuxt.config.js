@@ -55,6 +55,8 @@ export default {
    ** Nuxt.js modules
    */
   modules: [
+    "nuxtjs-mdi-font",
+    "@nuxtjs/svg",
     // Doc: https://axios.nuxtjs.org/usage
     "@nuxtjs/axios",
     // Doc: https://github.com/nuxt-community/dotenv-module

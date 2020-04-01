@@ -72,7 +72,10 @@ export default {
   },
   methods: {
     set_main_part_access_form() {
-      this.$store.dispatch("set_main_part_access_form", this.data);
+      this.$store.dispatch(
+        "auth_user_forms_test/set_main_part_access_form",
+        this.data
+      );
     }
   }
 };

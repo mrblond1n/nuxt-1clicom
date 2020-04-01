@@ -5,15 +5,15 @@
     :permanent="style_width()"
     :color="'rgba(0, 0, 0, .7)'"
     :width="style_width() ? '120' : ''"
+    @input="close_drawer"
     id="drawer"
     dark
     app
   >
-    <!-- <v-list-item color="white" link to="/home" @click="change_nav_list('/home')"> -->
-    <v-list-item color="white" link to="/home" @click="change_nav_list('/home')">
+    <v-list-item color="white" link to="/home">
       <v-list-item-content>
         <v-list-item-title class="text-center">
-          <v-img width="50px" style="margin: 0 auto" :src="require('~/static/logo__1clicom.png')"></v-img>
+          <v-img width="50px" style="margin: 0 auto" :src="require('~/static/logo__1clicom.png')" />
         </v-list-item-title>
       </v-list-item-content>
     </v-list-item>
@@ -26,7 +26,6 @@
           v-for="(item, i) in current_navigation_list.list"
           :to="set_path_for_link(item.path)"
           :key="i"
-          @click="change_nav_list(item.path)"
         >
           <v-list-item-content>
             <v-list-item-title class="subtitle-1 navigation_link">{{item.title}}</v-list-item-title>
@@ -70,6 +69,9 @@ export default {
     }
   },
   methods: {
+    close_drawer(val) {
+      this.$store.dispatch("shared/show_drawer", val);
+    },
     style_width() {
       if (
         this.$vuetify.breakpoint.name == "sm" ||
@@ -77,12 +79,6 @@ export default {
       )
         return false;
       return true;
-    },
-    change_nav_list(router_name) {
-      this.$store.state.user.user_setted && router_name === "/partner_page"
-        ? (router_name = "/auth_partner")
-        : router_name;
-      this.$store.dispatch("navigation/set_current_nav_list", router_name);
     },
     set_path_for_link(path) {
       // Проверка на логин юзера
@@ -116,41 +112,6 @@ export default {
         name: name
       });
     }
-  },
-  mounted() {
-    document.body.addEventListener("click", e => {
-      if (
-        e.target.classList.value === "v-overlay__scrim" &&
-        this.drawer === true
-      ) {
-        this.$store.dispatch("shared/show_drawer");
-      }
-    });
   }
-  //   computed: {
-  //     drawer: {
-  //       get() {
-  //         return true;
-  //         // return this.$store.shared.state.drawer;
-  //       },
-  //       set() {}
-  //     },
-  //     isSuperUser() {
-  //       // return this.$store.getters.isSuperUser;
-  //     },
-  //     option_scroll() {
-  //       return this.$store.shared.state.option_scroll;
-  //     },
-  //     getCurrentNavList() {
-  //       return this.$store.navigation.state.getCurrentNavList;
-  //     },
-  //     isUserLogin() {
-  //       // return this.$store.getters.isUserLogin;
-  //     }
-  //   },
-  //   methods: {
-
-  //
-  //   },
 };
 </script>

@@ -42,7 +42,10 @@ export default {
   },
   methods: {
     set_extra_part_order_key_form() {
-      this.$store.dispatch("set_extra_part_order_key_form", this.data);
+      this.$store.dispatch(
+        "auth_user_forms_key/set_extra_part_order_key_form",
+        this.data
+      );
     }
   }
 };

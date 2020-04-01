@@ -53,7 +53,7 @@ export default {
     //   return this.$store.getters.rules;
     // },
     test_access_form() {
-      return this.$store.getters.test_access_form;
+      return this.$store.getters["auth_user_forms_test/test_access_form"];
     }
   },
   methods: {
@@ -89,7 +89,7 @@ export default {
         formData.append("subject", "1clicom: тестовый доступ");
         formData.append("type", "partner");
 
-        this.$store.dispatch("send_data", formData).then(() => {
+        this.$store.dispatch("send", formData).then(() => {
           this.$refs.form.reset();
         });
       }

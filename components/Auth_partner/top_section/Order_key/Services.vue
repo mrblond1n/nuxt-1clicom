@@ -87,7 +87,10 @@ export default {
       this.set_services_order_key_form();
     },
     set_services_order_key_form() {
-      this.$store.dispatch("set_services_order_key_form", this.data);
+      this.$store.dispatch(
+        "auth_user_forms_key/set_services_order_key_form",
+        this.data
+      );
     }
   }
 };

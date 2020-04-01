@@ -136,6 +136,5 @@ section {
 .partner .svg {
   width: 200px;
   height: 200px;
-  fill: black;
 }
 </style>

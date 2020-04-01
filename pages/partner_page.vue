@@ -44,7 +44,6 @@ import appContactsSection from "~/components/Auth_partner/Contacts";
 import set_section_id from "~/library/set_section_id";
 export default {
   middleware({ store, redirect }) {
-    // If the user is not authenticated
     if (store.state.user.user !== null) {
       return redirect("/auth_partner");
     }

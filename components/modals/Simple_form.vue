@@ -44,6 +44,8 @@
 <script>
 import { mask } from "vue-the-mask";
 import get_rules from "~/library/rules_for_fields";
+import clear_from_tag from "~/library/clear_text_field";
+
 export default {
   directives: {
     mask,
@@ -84,9 +86,9 @@ export default {
       if (!this.$refs.form.validate()) return;
       let data = {
         COMPANY_TITLE: this.company_name
-          ? `<b>Компания:</b> ${this.company_name}`
+          ? `<b>Компания:</b> ${clear_from_tag(this.company_name)}`
           : '<span style="color:gray"><i>Компания не указана</i></span>',
-        NAME: `<b>Имя:</b> ${this.user_name}`,
+        NAME: `<b>Имя:</b> ${clear_from_tag(this.user_name)}`,
         PHONE_WORK: `<b>Телефон:</b> <a href="tel:${this.user_phone.replace(
           /[^+0-9]/gim,
           ""
