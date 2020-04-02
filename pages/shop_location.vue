@@ -122,11 +122,6 @@ export default {
       ]
     };
   },
-  computed: {
-    shops_list() {
-      return this.$store.getters.shops_list;
-    }
-  },
   methods: {
     phone_format(num) {
       const main_phone = num.split(",")[0];

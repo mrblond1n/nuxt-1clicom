@@ -33,16 +33,13 @@ export default {
   },
   computed: {
     modal() {
-      return this.$store.state.shared.modal;
+      return this.$store.getters["shared/modal"];
     }
   },
   methods: {
     close() {
       this.$store.dispatch("shared/show_modal", false);
     }
-  },
-  mounted() {
-    console.log(this.modal);
   }
 };
 </script>

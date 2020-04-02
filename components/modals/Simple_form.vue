@@ -116,7 +116,7 @@ export default {
   },
   computed: {
     modal() {
-      return this.$store.state.shared.modal;
+      return this.$store.getters["shared/modal"];
     },
     title() {
       switch (this.modal.id.charAt(0)) {

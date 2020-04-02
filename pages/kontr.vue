@@ -34,22 +34,6 @@ export default {
     appTable,
     appSectionPossible
   },
-  data() {
-    return {
-      show: false
-    };
-  },
-  computed: {
-    getKontragentSections() {
-      return this.$store.getters.getKontragentSections;
-    },
-    getKontrHowMuchTable() {
-      return this.$store.getters.getKontrHowMuchTable;
-    },
-    getKontrSectionPossible() {
-      return this.$store.getters.getKontrSectionPossible;
-    }
-  },
   mounted() {
     set_section_id(this);
   }

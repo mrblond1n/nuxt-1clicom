@@ -86,10 +86,10 @@ export default {
     }
   },
   created() {
-    if (this.$router.currentRoute.name === null) {
+    if (this.$route.name === null) {
       this.change_nav_list(`/home}`);
     } else {
-      this.change_nav_list(`/${this.$router.currentRoute.name.toLowerCase()}`);
+      this.change_nav_list(`/${this.$route.name.toLowerCase()}`);
     }
   },
   mounted() {

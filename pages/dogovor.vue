@@ -56,16 +56,3 @@
     </v-layout>
   </section>
 </template>
-
-<script>
-export default {
-  computed: {
-    dogovor_list() {
-      return this.$store.getters.dogovor;
-    },
-    requisites() {
-      return this.$store.getters.requisites;
-    }
-  }
-};
-</script>

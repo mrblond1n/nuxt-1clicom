@@ -15,7 +15,7 @@
         </nuxt-link>
 
         <!-- Выпадающее меню -->
-        <v-menu offset-y open-on-hover v-if="$router.history.current.name != 'home'">
+        <v-menu offset-y open-on-hover v-if="$route.name != 'home'">
           <template v-slot:activator="{ on }">
             <v-btn
               :small="$vuetify.breakpoint.xsOnly || $vuetify.breakpoint.smOnly"
@@ -134,7 +134,5 @@ export default {
       });
     }
   }
-
-  //
 };
 </script>

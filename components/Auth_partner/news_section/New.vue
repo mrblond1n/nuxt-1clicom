@@ -26,11 +26,6 @@ export default {
       default: () => {}
     }
   },
-  data() {
-    return {
-      //
-    };
-  },
   methods: {
     show_modal() {
       this.$store.dispatch("shared/show_modal", {

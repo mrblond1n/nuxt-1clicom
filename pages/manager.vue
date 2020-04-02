@@ -33,22 +33,6 @@ export default {
     appTable,
     appSectionPossible
   },
-  data() {
-    return {
-      show: false
-    };
-  },
-  computed: {
-    getManagerSections() {
-      return this.$store.getters.getManagerSections;
-    },
-    getManagerSectionPossible() {
-      return this.$store.getters.getManagerSectionPossible;
-    },
-    getManagerHowMuchTable() {
-      return this.$store.getters.getManagerHowMuchTable;
-    }
-  },
   mounted() {
     set_section_id(this);
   }

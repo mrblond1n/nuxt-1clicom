@@ -28,11 +28,6 @@ export default {
     appSection,
     appTable
   },
-  data() {
-    return {
-      show: false
-    };
-  },
   mounted() {
     set_section_id(this);
   }

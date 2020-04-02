@@ -29,14 +29,6 @@ export default {
     appSection,
     appTable
   },
-  computed: {
-    getExpertSections() {
-      return this.$store.getters.getExpertSections;
-    },
-    getExpert1cHowMuchTable() {
-      return this.$store.getters.getExpert1cHowMuchTable;
-    }
-  },
   mounted() {
     set_section_id(this);
   }

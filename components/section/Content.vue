@@ -54,8 +54,6 @@ export default {
   },
   methods: {
     modal_window_call() {
-      console.log("as?");
-
       this.$store.dispatch("shared/show_modal", {
         id: this.page,
         txt: "Заявка на обратный звонок"

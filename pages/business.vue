@@ -39,19 +39,7 @@ export default {
       show: false
     };
   },
-  computed: {
-    getBusinessSections() {
-      return this.$store.getters.getBusinessSections;
-    },
-    getBusinessHowMuchTable() {
-      return this.$store.getters.getBusinessHowMuchTable;
-    },
-    getBusinessSectionPossible() {
-      return this.$store.getters.getBusinessSectionPossible;
-    }
-  },
   mounted() {
-    console.log(this.$store.state.tables);
     set_section_id(this);
   }
 };
