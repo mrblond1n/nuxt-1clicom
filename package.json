@@ -8,8 +8,9 @@
     "dev": "nuxt",
     "build": "nuxt build",
     "start": "nuxt start",
-    "prod": "nuxt build && nuxt start",
     "generate": "nuxt generate",
+    "prod": "nuxt build && nuxt start",
+    "deploy": "nuxt generate && firebase deploy",
     "update": "git add . && git commit -m 'update'"
   },
   "dependencies": {
