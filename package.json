@@ -11,7 +11,7 @@
     "generate": "nuxt generate",
     "prod": "nuxt build && nuxt start",
     "deploy": "nuxt generate && firebase deploy",
-    "update": "git add . && git commit -m 'update'"
+    "update": "git add . && git commit -m 'update' && git push"
   },
   "dependencies": {
     "@neneos/nuxt-animate.css": "^0.0.1",
