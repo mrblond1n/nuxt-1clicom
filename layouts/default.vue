@@ -151,16 +151,26 @@ ul li {
   position: static;
 }
 
-@media (min-width: 1904px) {
-  .container {
-    max-width: 1185px;
+html {
+  font-size: 16px !important;
+  @media (max-width: 1264px) {
+    font-size: 14px !important;
+  }
+  @media (max-width: 600px) {
+    font-size: 12px !important;
   }
 }
-@media (max-width: 504px) {
-  html {
-    font-size: 13px !important;
-  }
-}
+
+// @media (min-width: 1904px) {
+//   .container {
+//     max-width: 1185px;
+//   }
+// }
+// @media (max-width: 504px) {
+//   html {
+//     font-size: 13px !important;
+//   }
+// }
 
 .list__item {
   border-bottom: 2px dotted #000;

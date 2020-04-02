@@ -45,7 +45,7 @@
           @click.stop="modal_window_call(current_navigation_list.name)"
         >
           <v-icon :left="style_width()">mdi-phone</v-icon>
-          <template v-show="style_width()">заказать звонок</template>
+          <template v-if="style_width()">заказать звонок</template>
         </v-btn>
         <v-btn v-if="!user_is_set" text @click="modal_window_call('point_entry')">
           <v-icon>mdi-account</v-icon>
