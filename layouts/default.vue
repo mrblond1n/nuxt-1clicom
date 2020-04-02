@@ -4,7 +4,7 @@
     <app-header @change_nav_list="change_nav_list" />
 
     <!-- CONTENT -->
-    <v-content class="pa-0 content">
+    <v-content class="pa-0 content" style="overflow: hidden">
       <nuxt />
     </v-content>
     <!-- FOOTER  -->
@@ -161,16 +161,11 @@ html {
   }
 }
 
-// @media (min-width: 1904px) {
-//   .container {
-//     max-width: 1185px;
-//   }
-// }
-// @media (max-width: 504px) {
-//   html {
-//     font-size: 13px !important;
-//   }
-// }
+@media (min-width: 1904px) {
+  .container {
+    max-width: 1185px;
+  }
+}
 
 .list__item {
   border-bottom: 2px dotted #000;

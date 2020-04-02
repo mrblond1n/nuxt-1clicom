@@ -8,9 +8,9 @@
 
         <section class="section partner">
           <v-container>
-            <h3
+            <h1
               class="display-2 mb-5"
-            >Преимущества онлайн-сервиса по проверке контрагентов "лик:эксперт"</h3>
+            >Преимущества онлайн-сервиса по проверке контрагентов "лик:эксперт"</h1>
             <v-layout justify-space-around wrap>
               <ul
                 style="max-width: 500px"

@@ -6,7 +6,7 @@
           <v-layout column justify-center>
             <v-layout align-center justify-space-between>
               <v-layout column align-start>
-                <h3 class="display-1">ЛИЦЕНЗИОННЫЙ ДОГОВОР</h3>
+                <h1 class="display-1">ЛИЦЕНЗИОННЫЙ ДОГОВОР</h1>
                 <h4 class="headline">на право использования программы для ЭВМ "ЛИК"</h4>
               </v-layout>
               <div class="headline">г.Москва</div>

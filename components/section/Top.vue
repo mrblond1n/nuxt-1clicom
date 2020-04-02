@@ -11,7 +11,7 @@
         <template v-for="(title, i) in section_info.titles">
           <template v-if="title.page == toggle">
             <v-layout align-center justify-center column class="mb-5" :key="`title_${i}`">
-              <h3 class="display-2 mb-3 text-center" style="line-height: 1.3" v-html="title.main"></h3>
+              <h1 class="display-2 mb-3 text-center" style="line-height: 1.3" v-html="title.main"></h1>
               <h4 class="headline" v-html="title.sub"></h4>
             </v-layout>
           </template>
@@ -52,7 +52,7 @@
                 align-center
                 :key="`image_${i}`"
               >
-                <v-img :src="require(`~/static/images/lists/${image.src}.png`)" min-width="450" />
+                <v-img :src="require(`~/static/images/lists/${image.src}.png`)" width="100%" />
               </v-layout>
             </template>
           </template>
@@ -66,7 +66,14 @@
         >
           <template v-for="(info, i) in section_info.info">
             <template v-if="info.page === toggle" style="display: inline-block">
-              <v-layout class="ma-5" column justify-center align-center :key="`info_${i}`">
+              <v-layout
+                class="ma-5"
+                column
+                justify-center
+                align-center
+                :key="`info_${i}`"
+                style="width: 45%"
+              >
                 <h5 class="headline pb-4">{{info.title}}</h5>
                 <ul class="text-left pb-4 pt-4">
                   <li
