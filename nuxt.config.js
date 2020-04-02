@@ -45,7 +45,8 @@ export default {
    */
   plugins: [
     { src: "~/plugins/aos", ssr: false },
-    { src: "~/plugins/animate_number", ssr: false }
+    { src: "~/plugins/animate_number", ssr: false },
+    { src: "~/plugins/vue-pdf.js", ssr: false }
   ],
   /*
    ** Nuxt.js dev-modules
@@ -103,7 +104,13 @@ export default {
     /*
      ** You can extend webpack config here
      */
-    extend(config, ctx) {}
+    extend(config, ctx) {
+      config.output.globalObject = "this";
+      config.module.rules.push({
+        test: /\.pdf$/,
+        loader: "url-loader"
+      });
+    }
   },
   router: {
     base: "/",

@@ -40,6 +40,9 @@ export default {
     close() {
       this.$store.dispatch("shared/show_modal", false);
     }
+  },
+  mounted() {
+    console.log(this.modal);
   }
 };
 </script>

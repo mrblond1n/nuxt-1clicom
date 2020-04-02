@@ -162,7 +162,7 @@ export default {
   },
   methods: {
     modal_window_call(src) {
-      if (typeof src === String) {
+      if (typeof src === "string") {
         this.$store.dispatch("shared/show_modal", {
           name: "pdf",
           src,
