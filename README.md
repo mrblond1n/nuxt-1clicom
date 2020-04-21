@@ -17,6 +17,11 @@ $ yarn start
 
 # generate static project
 $ yarn generate
+
+# deploy firebase
+$ yarn deploy
 ```
+
+[DEMO](https://nuxt-1clicom.web.app)
 
 For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
