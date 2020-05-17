@@ -16,7 +16,7 @@
             <client-only>
               <v-layout row wrap>
                 <v-layout
-                  v-for="(item, i) in home_data.first"
+                  v-for="(item, i) in first"
                   :key="i"
                   column
                   style="min-width: 150px"
@@ -44,7 +44,7 @@
         <v-layout justify-center column align-center style="margin-top: -180px">
           <v-layout row wrap justify-center class="my-5">
             <router-link
-              v-for="(item, i) in home_data.second"
+              v-for="(item, i) in second"
               :key="i"
               tag="div"
               class="pointer"
@@ -83,7 +83,7 @@
               min-width="150px"
               flat
               data-aos="fade-right"
-              v-for="(item, i) in home_data.third"
+              v-for="(item, i) in third"
               :key="i"
             >
               <v-list-item>
@@ -120,7 +120,7 @@
               width="25%"
               min-width="200px"
               flat
-              v-for="(item, i) in home_data.fourth"
+              v-for="(item, i) in fourth"
               :key="i"
             >
               <v-list-item>
@@ -147,7 +147,7 @@
               data-aos="fade-right"
               width="50%"
               min-width="200px"
-              v-for="(item, i) in home_data.fifth"
+              v-for="(item, i) in fifth"
               class="my-2"
               :key="i"
               flat
@@ -176,12 +176,133 @@ export default {
     appTable
   },
   data() {
-    return {};
-  },
-  computed: {
-    home_data() {
-      return this.$store.state.home.home;
-    }
+    return {
+      first: [
+        { count: 25560738, title: "Компаний и ип" },
+        { count: 45572629, title: "Арбитражных дел" },
+        { count: 2148271, title: "Проверок" },
+        { count: 13948271, title: "Бух. Балансов" }
+      ],
+      second: [
+        {
+          src: "lic_e.png",
+          path: "/expert",
+          description:
+            "Онлайн-сервис по проверке контрагентов и поиск целевых клиентов"
+        },
+        {
+          src: "lic_b.png",
+          path: "/business",
+          description:
+            "Приложение для Windows и 1С для проверки контрагентов и поиска целевых клиентов"
+        },
+        {
+          path: "/manager",
+          src: "lic_m.png",
+          description: "Windows-приложение для поиска целевых клиентов"
+        }
+      ],
+      third: [
+        {
+          title: "Руководителю",
+          description: "Минимизация финансовых и репутационных рисков",
+          src: "a_dir.png"
+        },
+        {
+          title: "Бухгалтеру",
+          description:
+            "Минимизация налоговых рисков и проявление должной осмотрительности",
+          src: "a_buh.png"
+        },
+        {
+          title: "Юристу",
+          description:
+            "Контроль изменения основных данных контрагента и анализ арбитражных дел",
+          src: "a_uri.png"
+        },
+        {
+          title: "службе безопасности",
+          description:
+            "Проверка благонадежности контрагентов и выявление аффилированности",
+          src: "a_sb.png"
+        },
+        {
+          title: "Менеджеру",
+          description:
+            "Формирование базы потенциальных клиентов, получение полной информации о клиенте",
+          src: "a_man.png"
+        },
+        {
+          title: "Маркетологу",
+          description: "Комплексный анализ конкурентного окружения",
+          src: "a_mar.png"
+        }
+      ],
+      fourth: [
+        {
+          title: "Данные фнс",
+          description: "Обновление ежедневно",
+          src: "fns_logo.png"
+        },
+        {
+          title: "Данные РосСтат",
+          description: "Обновление ежемесячно",
+          src: "rosstat_logo.png"
+        },
+        {
+          title: "Данные ВАС РФ",
+          description: "Обновление еженедельно",
+          src: "vasrf_logo.png"
+        },
+        {
+          title: "Данные ФССП",
+          description: "Обновление еженедельно",
+          src: "fssp_logo.png"
+        },
+        {
+          title: "Гос. закупки",
+          description: "Обновление еженедельно",
+          src: "goszak_logo.png"
+        },
+        {
+          title: "Ген. прокуратура",
+          description: "Обновление еженедельно",
+          src: "genpro_logo.png"
+        },
+        {
+          title: "ЦБ РФ",
+          description: "Обновление по запросу",
+          src: "cbrf_logo.png"
+        },
+        {
+          title: "Рос Реестр",
+          description: "Обновление по запросу",
+          src: "rosreestr_logo.png"
+        }
+      ],
+      fifth: [
+        {
+          date: "30 декабря 2019",
+          text:
+            'Уважаемые Клиенты! В период с с 3 по 5 января 2020 года на серверах компании будут проводиться технические работы по переходу на новую платформу, в связи с чем сервисы "ЛИК" могут быть временно недоступны.'
+        },
+        {
+          date: "25 октября 2017",
+          text:
+            "В связи с проведением срочных технологических работ, сервисы компании могут быть недоступны с 23-00 по 23-59 25.10.2017 года. Приносим свои извинения за предоставленные неудобства"
+        },
+        {
+          date: "25 октября 2017",
+          text:
+            "Во вторник, 24 октября, было проведено «сотни атак» с использованием вируса Bad Rabbit, который является модификацией вируса-шифратора, известного как Petya. Наши сервера также подверглись атакам и сервисы были временно недоступны. Приносим вам свои извинения. В настоящий момент проблема решена и сервисы работают в штатном режиме."
+        },
+        {
+          date: "28 апреля 2017",
+          text:
+            "Добавлена возможность заказа выписки из Единого государственного реестра недвижимости (ЕГРН), а также получение информации из реестра залогов движимого имущества."
+        }
+      ]
+    };
   },
   methods: {
     modal_window_call(num) {

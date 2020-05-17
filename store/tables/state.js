@@ -9,7 +9,6 @@ export default () => ({
           { text: "Лик:Эксперт" },
           { text: "Лик:Бизнес" },
           { text: "Лик:Менеджер" },
-          { text: "Лик:Контрагент" }
         ]
       }
     ],
@@ -31,10 +30,6 @@ export default () => ({
             text: "26 000",
             icon: "currency-rub"
           },
-          {
-            text: "17 000",
-            icon: "currency-rub"
-          }
         ]
       },
       {
@@ -53,11 +48,6 @@ export default () => ({
           {
             icon: "minus"
           },
-          {
-            text: "10 000",
-            icon: "currency-rub",
-            subtext: "(2000 руб / 1 раб. место)"
-          }
         ]
       },
       {
@@ -76,11 +66,6 @@ export default () => ({
           {
             icon: "minus"
           },
-          {
-            text: "15 000",
-            icon: "currency-rub",
-            subtext: "(1500 руб / 1 раб. место)"
-          }
         ]
       }
     ],
@@ -88,7 +73,6 @@ export default () => ({
       {
         cells: [
           { text: "" },
-          { text: "Заказать" },
           { text: "Заказать" },
           { text: "Заказать" },
           { text: "Заказать" }
@@ -162,52 +146,6 @@ export default () => ({
     header: [{ cells: [{ text: "Рабочее место" }] }],
     body: [{ cells: [{ text: "26 000", icon: "currency-rub" }] }],
     footer: [{ cells: [{ text: "Заказать" }] }]
-  },
-  kontr_how_much: {
-    class: "kontr_how_much",
-    title: "Сколько это стоит?",
-    header: [
-      {
-        cells: [
-          { text: "основное Рабочее место" },
-          { text: "5 дополнительных рабочих мест" },
-          { text: "10 дополнительных рабочих мест" }
-        ]
-      }
-    ],
-    body: [
-      {
-        cells: [
-          { text: "17 000", icon: "currency-rub" },
-          {
-            text: "10 000",
-            icon: "currency-rub",
-            subtext: "(2000 руб / 1 раб. место)"
-          },
-          {
-            text: "15 000",
-            icon: "currency-rub",
-            subtext: "(1500 руб / 1 раб. место)"
-          }
-        ]
-      }
-    ],
-    footer: [
-      {
-        cells: [
-          { text: "заказать" },
-          { text: "заказать" },
-          { text: "заказать" }
-        ]
-      }
-    ],
-    description: {
-      pay_info_html:
-        "При оплате картами Visa | Mastercard | МИР - <span style='color: #fb8c00; font-weight: bold;'>СКИДКА 10%</span>",
-      src: "online_pay.png",
-      text:
-        "* Дополнительные лицензии могут использоваться только при наличии действующей лицензии на основное рабочее место. Срок действия дополнительных лицензий равен оставшемуся сроку действия основного рабочего места, в случае их неодновременной покупки."
-    }
   },
   services: {
     class: "services",

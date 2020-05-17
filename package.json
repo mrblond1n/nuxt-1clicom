@@ -11,6 +11,7 @@
     "generate": "nuxt generate",
     "prod": "nuxt build && nuxt start",
     "deploy": "nuxt generate && firebase deploy",
+    "save": "git add . && git commit -m 'save'",
     "update": "git add . && git commit -m 'update' && git push"
   },
   "dependencies": {
