@@ -47,10 +47,10 @@
           <v-icon :left="style_width()">mdi-phone</v-icon>
           <template v-if="style_width()">заказать звонок</template>
         </v-btn>
-        <v-btn v-if="!user_is_set" text @click="modal_window_call('point_entry')">
+        <v-btn v-if="!user_is_set" icon @click="modal_window_call('point_entry')">
           <v-icon>mdi-account</v-icon>
         </v-btn>
-        <v-btn v-else text @click="modal_window_call('point_exit')">
+        <v-btn v-else icon @click="modal_window_call('point_exit')">
           <v-icon>mdi-exit-to-app</v-icon>
         </v-btn>
       </v-app-bar>

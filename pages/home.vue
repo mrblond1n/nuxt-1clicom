@@ -57,7 +57,10 @@
               <v-list-item style="width: 200px">
                 <v-layout column>
                   <v-list-item-avatar size="150" style="margin-right: 0" class="avatar-icon">
-                    <v-img :src="require('~/static/images/home/' + item.src)"></v-img>
+                    <v-img
+                      :src="require(`~/static/images/home/${item.src}`)"
+                      :lazy-src="require(`~/static/images/home/${item.src}`)"
+                    ></v-img>
                   </v-list-item-avatar>
                   <div class="caption text-center">{{item.description}}</div>
                 </v-layout>
@@ -94,7 +97,10 @@
                     :color="item.color"
                     class="avatar-icon"
                   >
-                    <v-img :src="require('~/static/images/home/' + item.src)"></v-img>
+                    <v-img
+                      :src="require(`~/static/images/home/${item.src}`)"
+                      :lazy-src="require(`~/static/images/home/${item.src}`)"
+                    ></v-img>
                   </v-list-item-avatar>
                   <v-list-item-title class="subtitle-2">{{item.title}}</v-list-item-title>
                   <div class="caption text-center">{{item.description}}</div>
@@ -126,7 +132,10 @@
               <v-list-item>
                 <v-layout column>
                   <v-list-item-avatar size="130" style="margin-right: 0" class="avatar-icon">
-                    <v-img :src="require('~/static/images/home/' + item.src)" />
+                    <v-img
+                      :src="require(`~/static/images/home/${item.src}`)"
+                      :lazy-src="require(`~/static/images/home/${item.src}`)"
+                    />
                   </v-list-item-avatar>
                   <v-list-item-title class="subtitle-2">{{item.title}}</v-list-item-title>
                   <div class="caption text-center">{{item.description}}</div>

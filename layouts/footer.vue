@@ -118,7 +118,6 @@ export default {
   },
   methods: {
     changeNavList(router_name) {
-      console.log(router_name);
       this.$store
         .dispatch("navigation/set_current_nav_list", router_name)
         .then(() => {

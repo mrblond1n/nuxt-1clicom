@@ -17,6 +17,7 @@
           <v-img
             class="ma-5 img_wrapper"
             :src="require(`~/static/images/lists/${section.src}.png`)"
+            :lazy-src="require(`~/static/images/lists/${section.src}.png`)"
           />
         </v-layout>
         <v-layout column align-center class="ma-5" style="width: 45%">

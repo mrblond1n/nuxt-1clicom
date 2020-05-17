@@ -52,7 +52,11 @@
                 align-center
                 :key="`image_${i}`"
               >
-                <v-img :src="require(`~/static/images/lists/${image.src}.png`)" width="100%" />
+                <v-img
+                  :src="require(`~/static/images/lists/${image.src}.png`)"
+                  :lazy-src="require(`~/static/images/lists/${image.src}.png`)"
+                  width="100%"
+                />
               </v-layout>
             </template>
           </template>
