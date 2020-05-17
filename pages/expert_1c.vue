@@ -16,6 +16,9 @@
 import set_section_id from "@/library/set_section_id";
 
 export default {
+  head: {
+    title: "ЛИК: ЭКСПЕРТ 1С"
+  },
   data() {
     return {
       list_sections: [

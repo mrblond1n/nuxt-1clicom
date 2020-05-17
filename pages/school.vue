@@ -18,3 +18,11 @@
     </v-layout>
   </section>
 </template>
+
+<script>
+export default {
+  head: {
+    title: "Видеоуроки"
+  }
+};
+</script>

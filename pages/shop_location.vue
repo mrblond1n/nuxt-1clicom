@@ -109,6 +109,9 @@
 
 <script>
 export default {
+  head: {
+    title: "Точки продаж"
+  },
   data() {
     return {
       search: "",

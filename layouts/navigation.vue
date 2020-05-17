@@ -54,6 +54,9 @@
 
 <script>
 export default {
+  data() {
+    return {};
+  },
   computed: {
     current_navigation_list() {
       return this.$store.getters["navigation/current_navigation_list"];

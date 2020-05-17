@@ -59,6 +59,9 @@
 
 <script>
 export default {
+  head: {
+    title: "Договор"
+  },
   data() {
     return {
       list: [

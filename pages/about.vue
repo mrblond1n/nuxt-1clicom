@@ -52,6 +52,9 @@
 <script>
 import set_section_id from "@/library/set_section_id";
 export default {
+  head: {
+    title: "О нас"
+  },
   mounted() {
     set_section_id(this);
   }

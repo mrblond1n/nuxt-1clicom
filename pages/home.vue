@@ -179,6 +179,9 @@
 <script>
 import set_section_id from "~/library/set_section_id";
 export default {
+  head: {
+    title: "Домашнаяя"
+  },
   data() {
     return {
       first: [

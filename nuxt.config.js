@@ -14,7 +14,7 @@ export default {
    ** Headers of the page
    */
   head: {
-    titleTemplate: "%s - " + process.env.npm_package_name,
+    titleTemplate: "%s - " + '1clicom',
     title: "1clicom" || "",
     meta: [
       { charset: "utf-8" },
