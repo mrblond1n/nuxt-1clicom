@@ -12,7 +12,7 @@
 <script>
 // import appOrderKeyForm from "./Order_key";
 import appOrderKeyForm from "~/components/Forms/OrderKeyForm";
-import appTestAccessForm from "./Test_access";
+import appTestAccessForm from "~/components/Forms/OrderTestAcc";
 export default {
   components: {
     appOrderKeyForm,

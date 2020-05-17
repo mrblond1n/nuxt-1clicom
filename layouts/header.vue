@@ -67,7 +67,6 @@ export default {
         { title: "лик: эксперт 1с", path: "/expert_1c" },
         { title: "лик: бизнес", path: "/business" },
         { title: "лик: менеджер", path: "/manager" },
-        { title: "лик: контрагент", path: "/kontr" },
         { title: "о нашей компании", path: "/about" },
         { title: "партнерский раздел", path: "/partner_page" }
       ]

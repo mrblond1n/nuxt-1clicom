@@ -1,48 +1,50 @@
 <template>
   <v-content class="pa-0 content">
     <v-layout column>
-      <template>
-        <app-top-section class="section partner" />
+      <section class="section partner">
+        <v-container>
+          <v-layout row justify-center wrap>
+            <app-order-key-form class="form px-5" />
+            <app-test-access-form class="form px-5" />
+          </v-layout>
+        </v-container>
+      </section>
 
-        <app-news-section class="section partner" :news="section_news" />
+      <app-news-section class="section partner" :news="section_news" />
 
-        <section class="section partner">
-          <v-container>
-            <h1
-              class="display-2 mb-5"
-            >Преимущества онлайн-сервиса по проверке контрагентов "лик:эксперт"</h1>
-            <v-layout justify-space-around wrap>
-              <ul
-                style="max-width: 500px"
-                v-for="(list, i) in advantage"
-                :key="i"
-                class="text-left"
-              >
-                <li class="my-3 list__item" v-for="(item, i) in list" :key="i">{{item}}</li>
-              </ul>
-            </v-layout>
-          </v-container>
-        </section>
+      <section class="section partner">
+        <v-container>
+          <h1
+            class="display-2 mb-5"
+          >Преимущества онлайн-сервиса по проверке контрагентов "лик:эксперт"</h1>
+          <v-layout justify-space-around wrap>
+            <ul style="max-width: 500px" v-for="(list, i) in advantage" :key="i" class="text-left">
+              <li class="my-3 list__item" v-for="(item, i) in list" :key="i">{{item}}</li>
+            </ul>
+          </v-layout>
+        </v-container>
+      </section>
 
-        <app-sections
-          class="section partner"
-          v-for="(section, i) in sections"
-          :key="i"
-          :section_info="section"
-        ></app-sections>
+      <app-sections
+        class="section partner"
+        v-for="(section, i) in sections"
+        :key="i"
+        :section_info="section"
+      ></app-sections>
 
-        <section class="section partner">
-          <app-section-table page="pt_1"></app-section-table>
-        </section>
+      <section class="section partner">
+        <app-section-table page="pt_1"></app-section-table>
+      </section>
 
-        <app-contacts-section class="section partner" />
-        <app-administration-section class="section partner" v-if="access_to_admin" />
-      </template>
+      <app-contacts-section class="section partner" />
+      <app-administration-section class="section partner" v-if="access_to_admin" />
     </v-layout>
   </v-content>
 </template>
 
 <script>
+import appOrderKeyForm from "~/components/Forms/OrderKeyForm";
+import appTestAccessForm from "~/components/Forms/OrderTestAcc";
 import appTopSection from "~/components/Auth_partner/top_section/Section";
 import appNewsSection from "~/components/Auth_partner/news_section/News";
 import appSections from "~/components/Auth_partner/sections/Section";
@@ -54,7 +56,8 @@ import set_section_id from "~/library/set_section_id";
 export default {
   middleware: "auth_guard",
   components: {
-    appTopSection,
+    appOrderKeyForm,
+    appTestAccessForm,
     appNewsSection,
     appSections,
     appAdministrationSection,
@@ -371,5 +374,9 @@ section {
 .partner .svg {
   width: 200px;
   height: 200px;
+}
+.form {
+  max-width: 500px;
+  min-width: 300px;
 }
 </style>

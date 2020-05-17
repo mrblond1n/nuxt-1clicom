@@ -180,9 +180,6 @@ export default {
     },
     submit() {
       if (this.$refs.form.validate()) {
-        this.form_data.type = this.toggle;
-        console.log(this.form_data);
-
         let data;
         try {
           data = {
@@ -193,27 +190,27 @@ export default {
               this.toggle === 0
                 ? "<b><i>Дистрибьютор</i></b>"
                 : "<b><i>Партнер</i></b>",
-            MAIN_TITLE: `<b>Наименование:</b> ${this.form_data.main.title}`,
-            MAIN_MAIL: `<b>Почта:</b> ${this.form_data.main.mail}`,
-            MAIN_NAME: `<b style="margin-bottom: 10px">ФИО:</b> ${this.form_data.main.name}`
+            MAIN_TITLE: `<b>Наименование:</b> ${this.main.title}`,
+            MAIN_MAIL: `<b>Почта:</b> ${this.main.mail}`,
+            MAIN_NAME: `<b style="margin-bottom: 10px">ФИО:</b> ${this.main.name}`
           };
-          if (Object.keys(this.form_data.extra).length != 0) {
+          if (Object.keys(this.extra).length != 0) {
             data.EXTRA_TYPE =
               this.toggle === 0
                 ? "<b><i>Партнер</i></b>"
                 : "<b><i>Клиент</i></b>";
-            data.EXTRA_TITLE = `<b>Наименование:</b> ${this.form_data.extra.title}`;
-            data.EXTRA_MAIL = `<b>Почта:</b> ${this.form_data.extra.mail}`;
+            data.EXTRA_TITLE = `<b>Наименование:</b> ${this.extra.title}`;
+            data.EXTRA_MAIL = `<b>Почта:</b> ${this.extra.mail}`;
           }
-          if (Object.keys(this.form_data.services).length != 0) {
+          if (Object.keys(this.services).length != 0) {
             data.MAIN_SERVICE = `<b style="margin-top: 10px">Выбранная лицензия:</b> лицензия на право использования программы для ЭВМ ${this.render_message(
-              this.form_data.services.select_main.replace("Лицензия ", "")
+              this.services.select_main.replace("Лицензия ", "")
             )} на 1 (одно) основное рабочее место сроком на один год`;
             data.EXTRA_SERVICE = `<b>Выбранная лицензия:</b> доп. лицензия к основному рабочему месту на право использования программы для ЭВМ ${this.render_message(
-              this.form_data.services.select_extra.replace("Доп. лицензия ", "")
+              this.services.select_extra.replace("Доп. лицензия ", "")
             )} сроком на один год ${
-              this.form_data.services.select_places
-                ? "на " + this.form_data.services.select_places.text
+              this.services.select_places
+                ? "на " + this.services.select_places.text
                 : ""
             }`;
           }
