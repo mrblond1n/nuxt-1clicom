@@ -4,7 +4,7 @@
     <h4 class="headline text-left">Выбрать сервис</h4>
     <v-select
       dense
-      @change="set_services_order_key_form"
+      @change="set_form"
       v-model="data.select_main"
       :items="services"
       label="Не выбрано"
@@ -28,7 +28,7 @@
       v-model="data.select_places"
       :items="extra_services.places"
       item-text="text"
-      @change="set_services_order_key_form"
+      @change="set_form"
       return-object
       item-disabled="disabled"
       single-line
@@ -84,13 +84,13 @@ export default {
       } else {
         this.extra_services.places[0].disabled = true;
       }
-      this.set_services_order_key_form();
+      this.set_form();
     },
-    set_services_order_key_form() {
-      this.$store.dispatch(
-        "auth_user_forms_key/set_services_order_key_form",
-        this.data
-      );
+    // set_form() {
+    //   this.$store.dispatch("auth_user_forms_key/set_form", this.data);
+    // },
+    set_form() {
+      this.$emit("set_form", { services: this.data });
     }
   }
 };

@@ -2,7 +2,7 @@
   <v-row>
     <v-col cols="12" md="12" class="pa-1 px-3">
       <v-text-field
-        @change="set_main_part_order_key_form"
+        @change="set_form"
         dense
         :rules="[rules.required]"
         v-model="data.title"
@@ -13,7 +13,7 @@
 
     <v-col cols="12" md="12" class="pa-1 px-3">
       <v-text-field
-        @change="set_main_part_order_key_form"
+        @change="set_form"
         dense
         v-model="data.mail"
         :rules="[rules.mail]"
@@ -24,7 +24,7 @@
 
     <v-col cols="12" md="12" class="pa-1 px-3">
       <v-text-field
-        @change="set_main_part_order_key_form"
+        @change="set_form"
         :rules="[rules.required]"
         dense
         v-model="data.name"
@@ -53,6 +53,9 @@ export default {
     };
   },
   methods: {
+    set_form() {
+      this.$emit("set_form", { main: this.data });
+    },
     set_main_part_order_key_form() {
       this.$store.dispatch(
         "auth_user_forms_key/set_main_part_order_key_form",

@@ -13,9 +13,8 @@
     </v-footer>
 
     <!-- SNACKBARS -->
-    <template>
+    <template v-if="snackbar.message">
       <v-snackbar
-        v-if="snackbar.message"
         :multi-line="true"
         :timeout="4000"
         :color="snackbar.color"
@@ -38,8 +37,6 @@ import appHeader from "./header";
 import appNavigation from "./navigation";
 import appFooter from "./footer";
 import appModal from "@/components/modals/Modal";
-
-import { mapState } from "vuex";
 
 export default {
   middleware({ route, store }) {

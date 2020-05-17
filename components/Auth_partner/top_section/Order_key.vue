@@ -8,12 +8,12 @@
         <v-btn>Партнер</v-btn>
       </v-btn-toggle>
       <!-- ОСНОВНАЯ ФОРМА -->
-      <app-main-part :toggle="toggle" :rules="rules"></app-main-part>
+      <app-main-part :toggle="toggle" :rules="rules" @set_form="set_form"></app-main-part>
       <h4 class="headline text-left">{{toggle === 0 ? 'О партнере' : 'О клиенте'}}</h4>
       <!-- ДОПОЛНИТЕЛЬНАЯ ФОРМА -->
-      <app-extra-part :toggle="toggle" :rules="rules"></app-extra-part>
+      <app-extra-part :toggle="toggle" :rules="rules" @set_form="set_form"></app-extra-part>
       <!-- ФОРМА ДЛЯ ВЫБОРА СЕРВИСОВ -->
-      <app-services-form :rules="rules"></app-services-form>
+      <app-services-form :rules="rules" @set_form="set_form"></app-services-form>
       <!-- ГРУППА КНОПОК -->
       <v-layout class="button-group my-5">
         <v-btn text color="primary" @click="clear">Очистить</v-btn>
@@ -59,12 +59,10 @@ export default {
         "Неверно указан номер инн",
       password: v => (v ? v.length : 8) >= 8 || "Минимум 8 символов",
       service_place: v => !!v || "Необходимо выбрать колличество рабочих мест."
-    }
+    },
+    form_data: {}
   }),
   computed: {
-    // rules() {
-    //   return this.$store.getters.rules;
-    // },
     test_order_key_form() {
       return this.$store.getters["auth_user_forms_key/test_order_key_form"];
     }
@@ -73,9 +71,16 @@ export default {
     clear() {
       this.$refs.form.reset();
     },
+    set_form(data) {
+      console.log(data);
+
+      this.form_data = data;
+    },
     submit() {
       if (this.$refs.form.validate()) {
-        this.test_order_key_form.type = this.radios;
+        this.form_data.type = this.radios;
+        console.log(this.form_data);
+
         let data;
         try {
           data = {
@@ -86,33 +91,27 @@ export default {
               this.toggle === 0
                 ? "<b><i>Дистрибьютор</i></b>"
                 : "<b><i>Партнер</i></b>",
-            MAIN_TITLE: `<b>Наименование:</b> ${this.test_order_key_form.main.title}`,
-            MAIN_MAIL: `<b>Почта:</b> ${this.test_order_key_form.main.mail}`,
-            MAIN_NAME: `<b style="margin-bottom: 10px">ФИО:</b> ${this.test_order_key_form.main.name}`
+            MAIN_TITLE: `<b>Наименование:</b> ${this.form_data.main.title}`,
+            MAIN_MAIL: `<b>Почта:</b> ${this.form_data.main.mail}`,
+            MAIN_NAME: `<b style="margin-bottom: 10px">ФИО:</b> ${this.form_data.main.name}`
           };
-          if (Object.keys(this.test_order_key_form.extra).length != 0) {
+          if (Object.keys(this.form_data.extra).length != 0) {
             data.EXTRA_TYPE =
               this.toggle === 0
                 ? "<b><i>Партнер</i></b>"
                 : "<b><i>Клиент</i></b>";
-            data.EXTRA_TITLE = `<b>Наименование:</b> ${this.test_order_key_form.extra.title}`;
-            data.EXTRA_MAIL = `<b>Почта:</b> ${this.test_order_key_form.extra.mail}`;
+            data.EXTRA_TITLE = `<b>Наименование:</b> ${this.form_data.extra.title}`;
+            data.EXTRA_MAIL = `<b>Почта:</b> ${this.form_data.extra.mail}`;
           }
-          if (Object.keys(this.test_order_key_form.services).length != 0) {
+          if (Object.keys(this.form_data.services).length != 0) {
             data.MAIN_SERVICE = `<b style="margin-top: 10px">Выбранная лицензия:</b> лицензия на право использования программы для ЭВМ ${this.render_message(
-              this.test_order_key_form.services.select_main.replace(
-                "Лицензия ",
-                ""
-              )
+              this.form_data.services.select_main.replace("Лицензия ", "")
             )} на 1 (одно) основное рабочее место сроком на один год`;
             data.EXTRA_SERVICE = `<b>Выбранная лицензия:</b> доп. лицензия к основному рабочему месту на право использования программы для ЭВМ ${this.render_message(
-              this.test_order_key_form.services.select_extra.replace(
-                "Доп. лицензия ",
-                ""
-              )
+              this.form_data.services.select_extra.replace("Доп. лицензия ", "")
             )} сроком на один год ${
-              this.test_order_key_form.services.select_places
-                ? "на " + this.test_order_key_form.services.select_places.text
+              this.form_data.services.select_places
+                ? "на " + this.form_data.services.select_places.text
                 : ""
             }`;
           }

@@ -41,6 +41,9 @@ export default {
     };
   },
   methods: {
+    set_form() {
+      this.$emit("set_form", { extra: this.data });
+    },
     set_extra_part_order_key_form() {
       this.$store.dispatch(
         "auth_user_forms_key/set_extra_part_order_key_form",

@@ -10,7 +10,8 @@
 </template>
 
 <script>
-import appOrderKeyForm from "./Order_key";
+// import appOrderKeyForm from "./Order_key";
+import appOrderKeyForm from "~/components/Forms/OrderKeyForm";
 import appTestAccessForm from "./Test_access";
 export default {
   components: {
