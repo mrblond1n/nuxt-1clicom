@@ -32,7 +32,7 @@
         ></app-sections>
 
         <section class="section partner">
-          <app-table page="pt_1" :table_data="getServicesTable"></app-table>
+          <app-table page="pt_1"></app-table>
         </section>
 
         <app-contacts-section class="section partner" />

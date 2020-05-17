@@ -10,7 +10,7 @@
       <app-section-possible page="bp" :section="possible_section"></app-section-possible>
     </section>
     <section class="section">
-      <app-table page="bt_1" :table_data="$store.state.tables.business_how_much"></app-table>
+      <app-table page="bt_1" :table_data="table"></app-table>
     </section>
   </v-layout>
 </template>
@@ -229,6 +229,41 @@ export default {
         ],
         description:
           "ЛИК: БИЗНЕС содержит информацию о более чем 8,7 млн. индивидуальных предпринимателей и 8.2 млн. юридических лиц (из них 4,8 млн. - действующие юридические лица). В базе данных содержится более 4 млн. контактных данных (телефоны/e-mail/сайт). Данные об имеющихся и о вновь зарегистированных ИП и компаниях регулярно обновляются и актуализируются."
+      },
+      table: {
+        class: "business_how_much",
+        title: "Сколько это стоит?",
+        header: [
+          {
+            cells: [
+              { text: "основное Рабочее место" },
+              { text: "5 дополнительных рабочих мест" },
+              { text: "10 дополнительных рабочих мест" }
+            ]
+          }
+        ],
+        body: [
+          {
+            cells: [
+              { text: "35 000", icon: "currency-rub" },
+              { text: "14 000", icon: "currency-rub" },
+              { text: "21 000", icon: "currency-rub" }
+            ]
+          }
+        ],
+        footer: [
+          {
+            cells: [
+              { text: "заказать" },
+              { text: "заказать" },
+              { text: "заказать" }
+            ]
+          }
+        ],
+        description: {
+          text:
+            "* Дополнительные лицензии могут использоваться только при наличии действующей лицензии на основное рабочее место. Срок действия дополнительных лицензий равен оставшемуся сроку действия основного рабочего места, в случае их неодновременной покупки."
+        }
       }
     };
   },

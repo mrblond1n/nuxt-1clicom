@@ -10,7 +10,7 @@
       <app-section-possible page="mp" :section="possible_section" />
     </section>
     <section class="section">
-      <app-table page="mt" :table_data="$store.state.tables.manager_how_much" />
+      <app-table page="mt" :table_data="table" />
     </section>
   </v-layout>
 </template>
@@ -130,6 +130,13 @@ export default {
             page: 0
           }
         ]
+      },
+      table: {
+        class: "manager_how_much",
+        title: "Сколько это стоит?",
+        header: [{ cells: [{ text: "Рабочее место" }] }],
+        body: [{ cells: [{ text: "26 000", icon: "currency-rub" }] }],
+        footer: [{ cells: [{ text: "Заказать" }] }]
       }
     };
   },

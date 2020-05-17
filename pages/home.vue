@@ -70,7 +70,7 @@
     </section>
 
     <section class="section">
-      <app-table :page="`ht_1`" :table_data="$store.state.tables.services" />
+      <app-table :page="`ht_1`" />
     </section>
 
     <section class="section">
@@ -107,7 +107,7 @@
     </section>
 
     <section class="section">
-      <app-table :page="`ht_2`" :table_data="$store.state.tables.home_how_much" />
+      <app-table :page="`ht_2`" :table_data="table" />
     </section>
 
     <section class="section">
@@ -301,7 +301,88 @@ export default {
           text:
             "Добавлена возможность заказа выписки из Единого государственного реестра недвижимости (ЕГРН), а также получение информации из реестра залогов движимого имущества."
         }
-      ]
+      ],
+      table: {
+        class: "home_table_how_much",
+        title: "сколько это стоит ?",
+        header: [
+          {
+            cells: [
+              { text: "" },
+              { text: "Лик:Эксперт" },
+              { text: "Лик:Бизнес" },
+              { text: "Лик:Менеджер" }
+            ]
+          }
+        ],
+        body: [
+          {
+            title: {
+              text: "Основное рабочее место / год"
+            },
+            cells: [
+              {
+                text: "44 000",
+                icon: "currency-rub"
+              },
+              {
+                text: "35 000",
+                icon: "currency-rub"
+              },
+              {
+                text: "26 000",
+                icon: "currency-rub"
+              }
+            ]
+          },
+          {
+            title: {
+              text: "5 Дополнительных рабочих мест"
+            },
+            cells: [
+              {
+                icon: "minus"
+              },
+              {
+                text: "14 000",
+                icon: "currency-rub",
+                subtext: "(2800 руб / 1 раб. место)"
+              },
+              {
+                icon: "minus"
+              }
+            ]
+          },
+          {
+            title: {
+              text: "10 Дополнительных рабочих мест"
+            },
+            cells: [
+              {
+                icon: "minus"
+              },
+              {
+                text: "21 000",
+                icon: "currency-rub",
+                subtext: "(2100 руб / 1 раб. место)"
+              },
+              {
+                icon: "minus"
+              }
+            ]
+          }
+        ],
+        footer: [
+          {
+            cells: [
+              { text: "" },
+              { text: "Заказать" },
+              { text: "Заказать" },
+              { text: "Заказать" }
+            ]
+          }
+        ]
+      }
     };
   },
   methods: {

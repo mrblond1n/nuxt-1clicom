@@ -7,7 +7,7 @@
       <app-section :page="`c${i + 2}`" :section="section"></app-section>
     </section>
     <section class="section">
-      <app-table page="ct" :table_data="$store.state.tables.expert_1c_how_much"></app-table>
+      <app-table page="ct" :table_data="table"></app-table>
     </section>
   </v-layout>
 </template>
@@ -223,6 +223,17 @@ export default {
             page: 1
           }
         ]
+      },
+      table: {
+        class: "expert_1c_how_much",
+        title: "Сколько это стоит?",
+        header: [{ cells: [{ text: "Рабочее место" }] }],
+        body: [{ cells: [{ text: "35 000", icon: "currency-rub" }] }],
+        footer: [{ cells: [{ text: "Заказать" }] }],
+        description: {
+          text:
+            "* Дополнительные лицензии могут использоваться только при наличии действующей лицензии на основное рабочее место. Срок действия дополнительных лицензий равен оставшемуся сроку действия основного рабочего места, в случае их неодновременной покупки."
+        }
       }
     };
   },

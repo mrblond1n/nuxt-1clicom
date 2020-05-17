@@ -7,7 +7,7 @@
       <app-section :section="section" :page="`e${i + 2}`"></app-section>
     </section>
     <section class="section">
-      <app-table :table_data="$store.state.tables.expert_how_much" page="et"></app-table>
+      <app-table :table_data="table" page="et"></app-table>
     </section>
   </v-layout>
 </template>
@@ -219,6 +219,20 @@ export default {
             page: 1
           }
         ]
+      },
+      table: {
+        class: "expert_how_much",
+        title: "Сколько это стоит?",
+        header: [{ cells: [{ text: "Рабочее место" }] }],
+        body: [{ cells: [{ text: "44 000", icon: "currency-rub" }] }],
+        footer: [{ cells: [{ text: "Заказать" }] }],
+        description: {
+          pay_info_html:
+            "При оплате картами Visa | Mastercard | МИР - <span style='color: red; font-weight: bold;'>СКИДКА 10%</span>",
+          src: "online_pay.png",
+          text:
+            "* Дополнительные лицензии могут использоваться только при наличии действующей лицензии на основное рабочее место. Срок действия дополнительных лицензий равен оставшемуся сроку действия основного рабочего места, в случае их неодновременной покупки."
+        }
       }
     };
   },
