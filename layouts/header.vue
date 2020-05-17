@@ -7,7 +7,7 @@
       <v-app-bar app dark id="bar" :color="'rgba(0, 0, 0, .7)'">
         <v-app-bar-nav-icon v-show="!style_width()" @click.stop="show_drawer" />
         <!-- Заголовок -->
-        <nuxt-link v-if="$vuetify.breakpoint.name != 'xs'" to="/home" tag="div">
+        <nuxt-link class="d-none d-sm-flex" to="/home" tag="div">
           <div class="pointer" @click="change_nav_list('/home')">
             <v-toolbar-title class="display-1">{{current_navigation_list.title}}</v-toolbar-title>
             <v-toolbar-title class="caption">{{current_navigation_list.subtitle}}</v-toolbar-title>

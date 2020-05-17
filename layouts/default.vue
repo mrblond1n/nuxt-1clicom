@@ -1,7 +1,13 @@
 <template>
   <v-app id="inspire">
-    <app-navigation @change_nav_list="change_nav_list" />
-    <app-header @change_nav_list="change_nav_list" />
+    <app-navigation
+      :drawer="drawer"
+      :nav_list="nav_list"
+      :user_set="user_is_set"
+      @close_drawer="drawer = false"
+      :super_user="super_user_is_set"
+    />
+    <app-header :nav_list="nav_list" :user_set="user_is_set" />
 
     <!-- CONTENT -->
     <v-content class="pa-0 content" style="overflow: hidden">
@@ -33,16 +39,20 @@
 </template>
 
 <script>
-import appHeader from "./header";
-import appNavigation from "./navigation";
+// import appHeader from "./header";
+import appHeader from "~/components/header";
+// import appNavigation from "./navigation";
+import appNavigation from "~/components/leftBar";
 import appFooter from "./footer";
 import appModal from "@/components/modals/Modal";
 
+import { mapState } from "vuex";
+
 export default {
-  middleware({ route, store }) {
-    store.dispatch("navigation/set_current_nav_list_test", route.path);
-    store.dispatch("shared/show_drawer", false);
-  },
+  // middleware({ route, store }) {
+  //   store.dispatch("navigation/set_current_nav_list_test", route.path);
+  //   store.dispatch("shared/show_drawer", false);
+  // },
   components: {
     appHeader,
     appNavigation,
@@ -60,10 +70,124 @@ export default {
         { title: "лик: контрагент", path: "/kontr" },
         { title: "о нашей компании", path: "/about" },
         { title: "партнерский раздел", path: "/partner_page" }
+      ],
+      navigation_lists: [
+        {
+          name: "home",
+          title: "ЗАО ЛИК",
+          subtitle: "Экспертные онлайн-сервисы",
+          list: [
+            { title: "ли: эксперт", path: "/expert" },
+            { title: "лик: эксперт 1с", path: "/expert_1c" },
+            { title: "лик: бизнес", path: "/business" },
+            { title: "лик: менеджер", path: "/manager" },
+            { title: "о нашей компании", path: "/about" },
+            { title: "партнерский раздел", path: "/partner_page" }
+          ]
+        },
+        {
+          name: "expert",
+          title: "ЛИК:Эксперт",
+          subtitle: "Cервис для проверки и поиска клиентов",
+          list: [
+            { title: "Поиск и карточка" },
+            { title: "Аффилированность" },
+            { title: "Арбитражная практика" },
+            { title: "Отчеты и выписки" },
+            { title: "Финансовая отчетность" },
+            { title: "Тендеры и закупки" },
+            { title: "Мониторинг и анализ" },
+            { title: "Формирование базы" },
+            { title: "Варианты и цены" }
+          ]
+        },
+        {
+          name: "expert_1c",
+          title: "ЛИК:Эксперт 1C",
+          subtitle: "Cервис для проверки и поиска клиентов",
+          list: [
+            { title: "Поиск и карточка" },
+            { title: "Аффилированность" },
+            { title: "Арбитражная практика" },
+            { title: "Отчеты и выписки" },
+            { title: "Финансовая отчетность" },
+            { title: "Тендеры и закупки" },
+            { title: "Мониторинг и анализ" },
+            { title: "Формирование базы" },
+            { title: "Варианты и цены" }
+          ]
+        },
+        {
+          name: "business",
+          title: "ЛИК:БИЗНЕС",
+          subtitle: "Сервис для поиска и проверки контрагентов",
+          list: [
+            { title: "Платформы и решения" },
+            { title: "Информация о компании" },
+            { title: "Оценка рисков" },
+            { title: "Формирование базы" },
+            { title: "Бух. отчетность" },
+            { title: "Возможности" },
+            { title: "Варианты и цены" }
+          ]
+        },
+        {
+          name: "manager",
+          title: "ЛИК:МЕНЕДЖЕР",
+          subtitle: "Сервис для формирования клиентской базы",
+          list: [
+            { title: "Контакты" },
+            { title: "Формирование базы" },
+            { title: "Контактная информация" },
+            { title: "Возможности" },
+            { title: "Варианты и цены" }
+          ]
+        },
+        {
+          name: "about",
+          title: "О нас",
+          list: [{ title: "О проекте" }, { title: "Информация" }]
+        },
+        {
+          name: "partner_page",
+          title: "Зао лик",
+          subtitle: "для партнеров",
+          list: [
+            { title: "схемы сотрутдничества" },
+            { title: "Контакты для связи" },
+            { title: "Личный кабинет", id: "point_entry" }
+          ]
+        },
+        {
+          name: "auth_partner",
+          title: "Зао лик",
+          subtitle: "для партнеров",
+          list: [
+            { title: "Заказать доступ" },
+            { title: "Новости" },
+            { title: "Преимущества" },
+            { title: "Документы" },
+            { title: "Обучение" },
+            { title: "Рекламные материалы" },
+            { title: "сервисы лик" },
+            { title: "контакты" },
+            { title: "Администрирование", root: true },
+            { title: "выход", id: "point_exit" }
+          ]
+        }
       ]
     };
   },
   computed: {
+    ...mapState(["user", "user_is_set", "super_user_is_set"]),
+    nav_list() {
+      if (this.user_is_set) {
+        return this.navigation_lists.filter(el => el.name === "lc_partners")[0];
+      }
+      return this.navigation_lists.filter(
+        el => el.name === this.$route.name
+      )[0];
+    },
     loading() {
       return this.$store.getters["shared/loading"];
     },
@@ -82,22 +206,22 @@ export default {
       this.$store.dispatch("navigation/set_current_nav_list", router_name);
     }
   },
-  created() {
-    if (this.$route.name === null) {
-      this.change_nav_list(`/home}`);
-    } else {
-      this.change_nav_list(`/${this.$route.name.toLowerCase()}`);
-    }
-  },
+  // created() {
+  //   if (this.$route.name === null) {
+  //     this.change_nav_list(`/home}`);
+  //   } else {
+  //     this.change_nav_list(`/${this.$route.name.toLowerCase()}`);
+  //   }
+  // },
   mounted() {
     this.$store.dispatch("user/auto_user_login").then(res => {
       if (!res) return;
       if (this.$route.name === "partner_page") {
         this.$router.push("/auth_partner");
-        this.$store.dispatch(
-          "navigation/set_current_nav_list",
-          "/auth_partner"
-        );
+        // this.$store.dispatch(
+        //   "navigation/set_current_nav_list",
+        //   "/auth_partner"
+        // );
       }
     });
   }

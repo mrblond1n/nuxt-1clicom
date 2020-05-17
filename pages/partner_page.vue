@@ -40,16 +40,12 @@
 
 <script>
 import appContactsSection from "~/components/Auth_partner/Contacts";
+import { mapState } from "vuex";
 
 import set_section_id from "~/library/set_section_id";
 export default {
   head: {
     title: "Партнеры"
-  },
-  middleware({ store, redirect }) {
-    if (store.state.user.user !== null) {
-      return redirect("/auth_partner");
-    }
   },
   components: {
     appContactsSection
@@ -111,6 +107,9 @@ export default {
         type: type
       });
     }
+  },
+  computed: {
+    ...mapState(["user", "user_is_set"])
   },
   mounted() {
     set_section_id(this);
