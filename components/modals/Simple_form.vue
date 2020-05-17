@@ -126,8 +126,6 @@ export default {
           return "домашняя страница";
         case "b":
           return "страница лик:бизнес";
-        case "k":
-          return "страница лик:контрагент";
         case "m":
           return "страница лик:менеджер";
         case "c":
@@ -149,8 +147,6 @@ export default {
           return "домашняя страница";
         case "b":
           return "страница лик:бизнес";
-        case "k":
-          return "страница лик:контрагент";
         case "m":
           return "страница лик:менеджер";
         case "c":

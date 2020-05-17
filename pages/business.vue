@@ -4,23 +4,18 @@
       <app-section-header :section_info="top_section" />
     </section>
     <section v-for="(section, i) in list_sections" class="section" :key="i + 10">
-      <app-section :page="`b${i + 2}`" :section="section"></app-section>
+      <app-section-content :page="`b${i + 2}`" :section="section"></app-section-content>
     </section>
     <section class="section">
       <app-section-possible page="bp" :section="possible_section"></app-section-possible>
     </section>
     <section class="section">
-      <app-table page="bt_1" :table_data="table"></app-table>
+      <app-section-table page="bt_1" :table_data="table"></app-section-table>
     </section>
   </v-layout>
 </template>
 
 <script>
-import appSectionHeader from "~/components/section/Top";
-import appSection from "~/components/section/Content";
-import appSectionPossible from "~/components/section/Possible";
-import appTable from "~/components/mist/Table";
-
 import set_section_id from "@/library/set_section_id";
 
 export default {
@@ -266,12 +261,6 @@ export default {
         }
       }
     };
-  },
-  components: {
-    appSectionHeader,
-    appSection,
-    appTable,
-    appSectionPossible
   },
   mounted() {
     set_section_id(this);

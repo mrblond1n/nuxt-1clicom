@@ -4,19 +4,15 @@
       <app-section-header :section_info="top_section_expert" />
     </section>
     <section v-for="(section, i) in list_sections" :key="i + 10" class="section">
-      <app-section :section="section" :page="`e${i + 2}`"></app-section>
+      <app-section-content :section="section" :page="`e${i + 2}`"></app-section-content>
     </section>
     <section class="section">
-      <app-table :table_data="table" page="et"></app-table>
+      <app-section-table :table_data="table" page="et"></app-section-table>
     </section>
   </v-layout>
 </template>
 
 <script>
-import appSectionHeader from "@/components/section/Top";
-import appSection from "@/components/section/Content";
-import appTable from "@/components/mist/Table";
-
 import set_section_id from "@/library/set_section_id";
 export default {
   data() {
@@ -201,7 +197,7 @@ export default {
               {
                 text: "Открыть лик:эксперт он-лайн",
                 icon: "mdi-google-chrome",
-                href: "http://licexpert.ru/"
+                href: "https://licexpert.ru/"
               }
             ],
 
@@ -212,7 +208,7 @@ export default {
               {
                 text: "Открыть лик:эксперт он-лайн",
                 icon: "mdi-google-chrome",
-                href: "http://licexpert.ru/"
+                href: "https://licexpert.ru/"
               }
             ],
 
@@ -235,11 +231,6 @@ export default {
         }
       }
     };
-  },
-  components: {
-    appSectionHeader,
-    appSection,
-    appTable
   },
   mounted() {
     set_section_id(this);

@@ -4,23 +4,18 @@
       <app-section-header :section_info="top_section" />
     </section>
     <section v-for="(section, i) in list_sections" :key="i + 10" class="section">
-      <app-section :page="`m${i + 2}`" :section="section" />
+      <app-section-content :page="`m${i + 2}`" :section="section" />
     </section>
     <section class="section">
       <app-section-possible page="mp" :section="possible_section" />
     </section>
     <section class="section">
-      <app-table page="mt" :table_data="table" />
+      <app-section-table page="mt" :table_data="table" />
     </section>
   </v-layout>
 </template>
 
 <script>
-import appTable from "~/components/mist/Table";
-import appSectionHeader from "@/components/section/Top";
-import appSection from "@/components/section/Content";
-import appSectionPossible from "~/components/section/Possible";
-
 import set_section_id from "~/library/set_section_id";
 export default {
   data() {
@@ -139,12 +134,6 @@ export default {
         footer: [{ cells: [{ text: "Заказать" }] }]
       }
     };
-  },
-  components: {
-    appSectionHeader,
-    appSection,
-    appTable,
-    appSectionPossible
   },
   mounted() {
     set_section_id(this);

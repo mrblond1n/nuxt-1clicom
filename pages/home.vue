@@ -70,7 +70,7 @@
     </section>
 
     <section class="section">
-      <app-table :page="`ht_1`" />
+      <app-section-table :page="`ht_1`" />
     </section>
 
     <section class="section">
@@ -107,7 +107,7 @@
     </section>
 
     <section class="section">
-      <app-table :page="`ht_2`" :table_data="table" />
+      <app-section-table :page="`ht_2`" :table_data="table" />
     </section>
 
     <section class="section">
@@ -168,13 +168,8 @@
 </template>
 
 <script>
-import appTable from "@/components/mist/Table";
-
 import set_section_id from "~/library/set_section_id";
 export default {
-  components: {
-    appTable
-  },
   data() {
     return {
       first: [

@@ -4,19 +4,15 @@
       <app-section-header :section_info="top_section_expert_1c" />
     </section>
     <section v-for="(section, i) in list_sections" :key="i + 10" class="section">
-      <app-section :page="`c${i + 2}`" :section="section"></app-section>
+      <app-section-content :page="`c${i + 2}`" :section="section"></app-section-content>
     </section>
     <section class="section">
-      <app-table page="ct" :table_data="table"></app-table>
+      <app-section-table page="ct" :table_data="table"></app-section-table>
     </section>
   </v-layout>
 </template>
 
 <script>
-import appSectionHeader from "@/components/section/Top";
-import appSection from "@/components/section/Content";
-import appTable from "@/components/mist/Table";
-
 import set_section_id from "@/library/set_section_id";
 
 export default {
@@ -236,11 +232,6 @@ export default {
         }
       }
     };
-  },
-  components: {
-    appSectionHeader,
-    appSection,
-    appTable
   },
   mounted() {
     set_section_id(this);

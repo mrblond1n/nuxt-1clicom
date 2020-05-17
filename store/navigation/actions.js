@@ -20,17 +20,14 @@ export default {
       case "/manager":
         index = 4;
         break;
-      case "/kontr":
+      case "/about":
         index = 5;
         break;
-      case "/about":
+      case "/partner_page":
         index = 6;
         break;
-      case "/partner_page":
-        index = 7;
-        break;
       case "/auth_partner":
-        index = 8;
+        index = 7;
         break;
       default:
         index = 0;

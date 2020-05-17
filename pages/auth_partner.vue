@@ -32,7 +32,7 @@
         ></app-sections>
 
         <section class="section partner">
-          <app-table page="pt_1"></app-table>
+          <app-section-table page="pt_1"></app-section-table>
         </section>
 
         <app-contacts-section class="section partner" />
@@ -48,7 +48,6 @@ import appNewsSection from "~/components/Auth_partner/news_section/News";
 import appSections from "~/components/Auth_partner/sections/Section";
 import appAdministrationSection from "~/components/Auth_partner/administration/Section";
 import appContactsSection from "~/components/Auth_partner/Contacts";
-import appTable from "~/components/mist/Table";
 
 import set_section_id from "~/library/set_section_id";
 
@@ -57,7 +56,6 @@ export default {
   components: {
     appTopSection,
     appNewsSection,
-    appTable,
     appSections,
     appAdministrationSection,
     appContactsSection
@@ -334,16 +332,13 @@ export default {
   computed: {
     access_to_admin() {
       return this.$store.getters["user/super_user_is_set"];
-    },
+    }
     // news() {
     //   return this.$store.getters["auth_user_page/section_news"];
     // },
     // sections() {
     //   return this.$store.getters["auth_user_page/sections"];
     // },
-    getServicesTable() {
-      return this.$store.state.tables.services;
-    }
   },
   mounted() {
     set_section_id(this);
