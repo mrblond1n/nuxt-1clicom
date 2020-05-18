@@ -1,30 +1,18 @@
 <template>
   <v-navigation-drawer v-model="show_drawer" app width="120" color="rgba(0,0,0, .7)" dark>
-    <v-list nav dense>
-      <v-list-item-group>
-        <v-list-item color="white" link to="/home">
-          <v-list-item-content>
-            <v-list-item-title class="text-center">
-              <v-img
-                width="50px"
-                style="margin: 0 auto"
-                :src="require('~/static/logo__1clicom.png')"
-              />
-            </v-list-item-title>
-          </v-list-item-content>
+    <v-list-item color="white" link to="/home">
+      <v-list-item-content>
+        <v-list-item-title class="text-center">
+          <v-img width="50px" style="margin: 0 auto" :src="require('~/static/logo__1clicom.png')" />
+        </v-list-item-title>
+      </v-list-item-content>
+    </v-list-item>
+    <v-list>
+      <template v-for="(item, i) in nav_list.list">
+        <v-list-item class="py-2" link :key="item.path" :to="item.path" @click="handler({item, i})">
+          <v-list-item-title class="subtitle-1 navigation_link">{{item.title}}</v-list-item-title>
         </v-list-item>
-        <template v-for="(item, i) in nav_list.list">
-          <v-list-item
-            link
-            color="white"
-            :key="item.path"
-            :to="item.path"
-            @click="handler({item, i})"
-          >
-            <v-list-item-title class="subtitle-1 navigation_link">{{item.title}}</v-list-item-title>
-          </v-list-item>
-        </template>
-      </v-list-item-group>
+      </template>
     </v-list>
   </v-navigation-drawer>
 </template>

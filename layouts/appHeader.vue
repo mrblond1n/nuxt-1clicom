@@ -39,7 +39,19 @@ export default {
   props: {
     nav_list: {
       type: Object,
-      default: () => {}
+      default: () => ({
+        name: "home",
+        title: "ЗАО ЛИК",
+        subtitle: "Экспертные онлайн-сервисы",
+        list: [
+          { title: "ли: эксперт", path: "/expert" },
+          { title: "лик: эксперт 1с", path: "/expert_1c" },
+          { title: "лик: бизнес", path: "/business" },
+          { title: "лик: менеджер", path: "/manager" },
+          { title: "о нашей компании", path: "/about" },
+          { title: "партнерский раздел", path: "/partner_page" }
+        ]
+      })
     }
   },
   data() {

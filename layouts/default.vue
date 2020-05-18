@@ -175,8 +175,6 @@ export default {
   },
   methods: {
     ...mapActions({
-      show_modal: "shared/show_modal",
-      logout: "user/user_logout",
       clear_snackbar: "shared/clear_snackbar",
       auto_login: "user/auto_user_login"
     }),
