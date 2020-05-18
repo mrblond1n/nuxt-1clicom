@@ -5,6 +5,7 @@
       <v-form ref="form" v-model="valid" lazy-validation>
         <v-text-field
           prepend-icon="mdi-account"
+          autocomplete="username login"
           name="login"
           placeholder=" "
           label="Логин"
@@ -16,6 +17,7 @@
         <v-text-field
           prepend-icon="mdi-lock"
           name="password"
+          autocomplete="password"
           placeholder=" "
           label="Пароль"
           color="#005B9B"
@@ -31,7 +33,7 @@
 
     <v-card-actions>
       <v-spacer></v-spacer>
-      <v-btn color="primary" text @click="show_modal(false)">Отмена</v-btn>
+      <v-btn color="primary" text @click="modal(false)">Отмена</v-btn>
       <v-btn color="primary" dark @click="onSubmit">Войти</v-btn>
     </v-card-actions>
   </v-card>
@@ -53,7 +55,7 @@ export default {
   },
   methods: {
     ...mapActions({
-      show_modal: "shared/show_modal",
+      modal: "shared/show_modal",
       get_info: "user/get_user_info",
       user_login: "user/user_login"
     }),
@@ -66,10 +68,10 @@ export default {
         this.user_login(user).then(res => {
           if (!res) return;
           this.get_info(res);
-          this.show_modal(false);
+          this.modal(false);
           this.$router.push("/auth_partner");
         });
-        this.show_modal(false);
+        this.modal(false);
       }
     }
   }

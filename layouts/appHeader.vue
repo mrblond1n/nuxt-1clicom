@@ -19,7 +19,8 @@
         </v-list>
       </v-menu>
       <v-spacer></v-spacer>
-      <v-btn color="warning" @click="modal(nav_list.name)">
+      <v-btn color="warning" @click="show_modal">
+        <!-- <v-btn color="warning" @click="modal({id:nav_list.name})"> -->
         <v-icon>mdi-phone</v-icon>
         <span class="d-none d-sm-flex">заказать звонок</span>
       </v-btn>
@@ -67,7 +68,13 @@ export default {
     };
   },
   methods: {
-    ...mapActions({ modal: "shared/show_modal", logout: "user/user_logout" })
+    ...mapActions({ modal: "shared/show_modal", logout: "user/user_logout" }),
+    show_modal() {
+      this.modal({
+        id: this.$route.name.charAt(0) + 0,
+        txt: "Заявка на обратный звонок"
+      });
+    }
   },
   computed: {
     ...mapState("user", ["user"])

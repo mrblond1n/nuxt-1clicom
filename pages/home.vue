@@ -67,7 +67,7 @@
               </v-list-item>
             </router-link>
           </v-layout>
-          <v-btn color="warning" @click="modal_window_call({id: 'h1'})">Получить тестовый доступ</v-btn>
+          <v-btn color="warning" @click="modal({id: 'h1'})">Получить тестовый доступ</v-btn>
         </v-layout>
       </v-container>
     </section>
@@ -177,6 +177,7 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
 import set_section_id from "~/library/set_section_id";
 export default {
   head: {
@@ -393,9 +394,7 @@ export default {
     };
   },
   methods: {
-    modal_window_call(num) {
-      this.$store.dispatch("show_modal", num);
-    },
+    ...mapActions({ modal: "shared/show_modal" }),
     formatter: function(num) {
       let number = num.toFixed(0);
       return number

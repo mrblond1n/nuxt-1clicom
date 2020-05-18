@@ -1,6 +1,7 @@
 <template>
   <v-card>
     <v-card-title class="headline">{{modal_title}}</v-card-title>
+    {{modal}}
     <template>
       <v-card-text>
         <v-form v-model="form_valid" ref="form">
@@ -35,8 +36,8 @@
 
     <v-card-actions>
       <v-spacer></v-spacer>
-      <v-btn color="primary" text @click="close">Отмена</v-btn>
-      <v-btn color="primary" @click="send">Отправить</v-btn>
+      <v-btn color="primary" text @click="show_modal(false)">Отмена</v-btn>
+      <v-btn color="primary" @click="send_data">Отправить</v-btn>
     </v-card-actions>
   </v-card>
 </template>
@@ -45,6 +46,8 @@
 import { mask } from "vue-the-mask";
 import get_rules from "~/library/rules_for_fields";
 import clear_from_tag from "~/library/clear_text_field";
+
+import { mapState, mapActions } from "vuex";
 
 export default {
   directives: {
@@ -80,10 +83,8 @@ export default {
     };
   },
   methods: {
-    close() {
-      this.$store.dispatch("shared/show_modal", false);
-    },
-    send() {
+    ...mapActions({ show_modal: "shared/show_modal", send: "send" }),
+    send_data() {
       if (!this.$refs.form.validate()) return;
       let data = {
         COMPANY_TITLE: this.company_name
@@ -108,16 +109,13 @@ export default {
       formData.append("text", text);
       formData.append("subject", `1clicom: ${this.modal.txt}`);
       formData.append("type", "simple");
-
-      this.$store.dispatch("send", formData).then(() => {
-        this.$store.dispatch("shared/show_modal", false);
+      this.send(formData).then(() => {
+        this.show_modal(false);
       });
     }
   },
   computed: {
-    modal() {
-      return this.$store.getters["shared/modal"];
-    },
+    ...mapState("shared", ["modal"]),
     title() {
       switch (this.modal.id.charAt(0)) {
         case "e":

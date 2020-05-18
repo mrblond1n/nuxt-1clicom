@@ -9,7 +9,14 @@
     </v-list-item>
     <v-list>
       <template v-for="(item, i) in nav_list.list">
-        <v-list-item class="py-2" link :key="item.path" :to="item.path" @click="handler({item, i})">
+        <v-list-item
+          v-if="show(item)"
+          class="py-2"
+          link
+          :key="item.path"
+          :to="path(item.path)"
+          @click="handler({item, i})"
+        >
           <v-list-item-title class="subtitle-1 navigation_link">{{item.title}}</v-list-item-title>
         </v-list-item>
       </template>
@@ -19,7 +26,7 @@
 
 <script>
 import * as easings from "vuetify/es5/services/goto/easing-patterns";
-import { mapActions } from "vuex";
+import { mapActions, mapState } from "vuex";
 
 export default {
   props: {
@@ -53,6 +60,7 @@ export default {
     }
   }),
   computed: {
+    ...mapState("user", ["super_user", "user"]),
     show_drawer: {
       get() {
         return this.drawer;
@@ -66,11 +74,21 @@ export default {
     ...mapActions({ modal: "shared/show_modal", logout: "user/user_logout" }),
     handler({ item, i }) {
       if (item.id) {
-        item.id === "point_exit" ? this.logout() : this.modal(item.id);
+        item.id === "point_exit"
+          ? this.logout()
+          : this.modal({ name: item.id });
       } else {
         if (this.$route.name === "home") return;
         this.$vuetify.goTo(`#section_${i}`, this.option_scroll);
       }
+    },
+    show(item) {
+      if (item.root && this.super_user) return true;
+      if (!item.root) return true;
+      return false;
+    },
+    path(val) {
+      return this.user && val === "/partner_page" ? "/auth_partner" : val;
     }
   }
 };

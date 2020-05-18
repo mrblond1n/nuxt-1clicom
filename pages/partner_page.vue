@@ -110,10 +110,11 @@ export default {
     }
   },
   computed: {
-    ...mapState(["user", "user_is_set"])
+    ...mapState("user", ["user"])
   },
   mounted() {
     set_section_id(this);
+    this.user && this.$router.push("/auth_partner");
     document.querySelector(".to_shops").addEventListener("click", e => {
       e.preventDefault();
       this.$router.push("/shop_location");
