@@ -12,9 +12,9 @@
           width="100%"
           v-if="card.link"
           tag="a"
-          :href="card.link"
-          download
-        >Скачать</v-btn>
+          target="_blank"
+          :href="`http://licweb.ru/1clicom/files/partner_page/${card.link}`"
+        >открыть</v-btn>
         <v-btn
           outlined
           color="indigo"

@@ -325,7 +325,7 @@ export default {
           {
             title: "Страница сервиса <br/> лик:эксперт",
             src: "education",
-            link: "sercicePage.docx"
+            link: "servicePage.docx"
           },
           {
             title: "Баннер №2",
