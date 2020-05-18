@@ -3,20 +3,24 @@
     <app-navigation
       :drawer="drawer"
       :nav_list="nav_list"
-      :user_set="user_is_set"
+      :user_set="user"
       @close_drawer="drawer = false"
-      :super_user="super_user_is_set"
+      :super_user="super_user"
     />
-    <app-header :nav_list="nav_list" :user_set="user_is_set" />
+    <app-header
+      :nav_list="nav_list"
+      :user_set="user"
+      @show_drawer="drawer = true"
+      :show_modal="show_modal"
+      :logout="logout"
+    />
 
     <!-- CONTENT -->
     <v-content class="pa-0 content" style="overflow: hidden">
       <nuxt />
     </v-content>
     <!-- FOOTER  -->
-    <v-footer id="footer" class="footer" app padless @change_nav_list="change_nav_list">
-      <app-footer />
-    </v-footer>
+    <app-footer />
 
     <!-- SNACKBARS -->
     <template v-if="snackbar.message">
@@ -25,10 +29,10 @@
         :timeout="4000"
         :color="snackbar.color"
         :value="true"
-        @input="closeSnackbar"
+        @input="clear_snackbar"
       >
         {{ snackbar.message }}
-        <v-btn color="black" text @click.native="closeSnackbar">
+        <v-btn color="black" text @click.native="clear_snackbar">
           <v-icon center>mdi-close</v-icon>
         </v-btn>
       </v-snackbar>
@@ -39,20 +43,14 @@
 </template>
 
 <script>
-// import appHeader from "./header";
 import appHeader from "~/components/header";
-// import appNavigation from "./navigation";
 import appNavigation from "~/components/leftBar";
-import appFooter from "./footer";
+import appFooter from "~/components/footer";
 import appModal from "@/components/modals/Modal";
 
-import { mapState } from "vuex";
+import { mapState, mapActions } from "vuex";
 
 export default {
-  // middleware({ route, store }) {
-  //   store.dispatch("navigation/set_current_nav_list_test", route.path);
-  //   store.dispatch("shared/show_drawer", false);
-  // },
   components: {
     appHeader,
     appNavigation,
@@ -179,49 +177,30 @@ export default {
     };
   },
   computed: {
-    ...mapState(["user", "user_is_set", "super_user_is_set"]),
+    ...mapState("user", ["user", "super_user"]),
+    ...mapState("shared", ["loading", "snackbar"]),
     nav_list() {
-      if (this.user_is_set) {
-        return this.navigation_lists.filter(el => el.name === "lc_partners")[0];
-      }
       return this.navigation_lists.filter(
         el => el.name === this.$route.name
       )[0];
-    },
-    loading() {
-      return this.$store.getters["shared/loading"];
-    },
-    snackbar() {
-      return this.$store.getters["shared/snackbar"];
     }
   },
   methods: {
+    ...mapActions({
+      show_modal: "shared/show_modal",
+      logout: "user/user_logout",
+      clear_snackbar: "shared/clear_snackbar",
+      auto_login: "user/auto_user_login"
+    }),
     opacityColor(color) {
       return `rgba(${color}, .7)`;
-    },
-    closeSnackbar() {
-      this.$store.dispatch("shared/clear_snackbar");
-    },
-    change_nav_list(router_name) {
-      this.$store.dispatch("navigation/set_current_nav_list", router_name);
     }
   },
-  // created() {
-  //   if (this.$route.name === null) {
-  //     this.change_nav_list(`/home}`);
-  //   } else {
-  //     this.change_nav_list(`/${this.$route.name.toLowerCase()}`);
-  //   }
-  // },
   mounted() {
-    this.$store.dispatch("user/auto_user_login").then(res => {
+    this.auto_login().then(res => {
       if (!res) return;
       if (this.$route.name === "partner_page") {
         this.$router.push("/auth_partner");
-        // this.$store.dispatch(
-        //   "navigation/set_current_nav_list",
-        //   "/auth_partner"
-        // );
       }
     });
   }

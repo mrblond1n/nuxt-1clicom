@@ -1,6 +1,5 @@
 <template>
   <v-navigation-drawer
-    v-model="drawer"
     :permanent="style_width"
     :color="'rgba(0, 0, 0, .7)'"
     :width="style_width ? '120' : ''"
@@ -17,7 +16,7 @@
       </v-list-item-content>
     </v-list-item>
 
-    <v-list v-if="nav_list">
+    <v-list>
       <template v-if="nav_list.name === 'home'">
         <v-list-item color="white" link v-for="(item, i) in nav_list.list" :to="item.path" :key="i">
           <v-list-item-content>
@@ -31,7 +30,7 @@
           <v-list-item
             v-if="!item.root || (item.root && super_user)"
             color="white"
-            @click="item.id ? modal_window_call(item.id) : $vuetify.goTo(`#section_${index}`, $store.state.shared.option_scroll)"
+            @click="item.id ? modal_window_call(item.id) : $vuetify.goTo(`#section_${index}`, option_scroll)"
             link
             :key="index"
           >
@@ -46,24 +45,52 @@
 </template>
 
 <script>
+import * as easings from "vuetify/es5/services/goto/easing-patterns";
+
 export default {
   props: {
     nav_list: {
       type: Object,
-      default: () => {}
+      default: () => ({
+        name: "home",
+        title: "ЗАО ЛИК",
+        subtitle: "Экспертные онлайн-сервисы",
+        list: [
+          { title: "ли: эксперт", path: "/expert" },
+          { title: "лик: эксперт 1с", path: "/expert_1c" },
+          { title: "лик: бизнес", path: "/business" },
+          { title: "лик: менеджер", path: "/manager" },
+          { title: "о нашей компании", path: "/about" },
+          { title: "партнерский раздел", path: "/partner_page" }
+        ]
+      })
     },
     user_set: {
-      type: Boolean,
-      default: false
+      type: Object,
+      default: () => {}
     },
     drawer: {
       type: Boolean,
       default: true
     },
     super_user: {
-      type: Boolean,
-      default: true
+      type: Object,
+      default: () => {}
+    },
+    logout: {
+      type: Function,
+      default: () => {}
     }
+  },
+  data() {
+    return {
+      option_scroll: {
+        easing: "easeInOutCubic",
+        easings: Object.keys(easings),
+        duration: 1000,
+        offset: 0
+      }
+    };
   },
   computed: {
     style_width() {

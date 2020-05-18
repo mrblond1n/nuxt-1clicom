@@ -1,8 +1,8 @@
 <template>
-  <header v-if="nav_list">
+  <header>
     <!-- TOP  -->
     <v-app-bar app dark id="bar" :color="'rgba(0, 0, 0, .7)'">
-      <v-app-bar-nav-icon v-show="!style_width" @click.stop="show_drawer" />
+      <v-app-bar-nav-icon v-show="!style_width" @click="show_drawer" />
       <!-- Заголовок -->
       <nuxt-link class="d-none d-sm-flex" to="/home" tag="div">
         <div class="pointer">
@@ -31,19 +31,19 @@
       <v-spacer></v-spacer>
 
       <!-- Правая часть хедера -->
-      <v-btn :small="style_width" color="warning" @click.stop="modal_window_call(nav_list.name)">
+      <v-btn :small="style_width" color="warning" @click.stop="show_modal(nav_list.name)">
         <v-icon :left="style_width">mdi-phone</v-icon>
         <template v-if="style_width">заказать звонок</template>
       </v-btn>
-      <v-btn v-if="!user_set" icon @click="modal_window_call('point_entry')">
+      <v-btn v-if="!user_set" icon @click="show_modal({name: 'point_entry'})">
         <v-icon>mdi-account</v-icon>
+        {{user_set}}
       </v-btn>
-      <v-btn v-else icon @click="modal_window_call('point_exit')">
+      <v-btn v-else icon @click="logout">
         <v-icon>mdi-exit-to-app</v-icon>
       </v-btn>
     </v-app-bar>
   </header>
-  <div v-else>{{nav_list}}</div>
 </template>
 
 <script>
@@ -58,7 +58,15 @@ export default {
       default: () => {}
     },
     user_set: {
-      type: Boolean,
+      type: Object,
+      default: () => {}
+    },
+    show_modal: {
+      type: Function,
+      default: () => {}
+    },
+    logout: {
+      type: Function,
       default: () => {}
     }
   },
@@ -85,7 +93,9 @@ export default {
     }
   },
   methods: {
-    show_drawer() {}
+    show_drawer() {
+      this.$emit("show_drawer");
+    }
   }
 };
 </script>

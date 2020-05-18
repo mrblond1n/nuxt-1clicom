@@ -31,13 +31,14 @@
 
     <v-card-actions>
       <v-spacer></v-spacer>
-      <v-btn color="primary" text @click="close">Отмена</v-btn>
+      <v-btn color="primary" text @click="show_modal(false)">Отмена</v-btn>
       <v-btn color="primary" dark @click="onSubmit">Войти</v-btn>
     </v-card-actions>
   </v-card>
 </template>
 
 <script>
+import { mapActions } from "vuex";
 export default {
   data() {
     return {
@@ -51,26 +52,24 @@ export default {
     };
   },
   methods: {
-    close() {
-      this.$store.dispatch("shared/show_modal", false);
-    },
+    ...mapActions({
+      show_modal: "shared/show_modal",
+      get_info: "user/get_user_info",
+      user_login: "user/user_login"
+    }),
     onSubmit() {
       if (this.$refs.form.validate()) {
         const user = {
           user_name: this.login.toLowerCase(),
           user_pass: this.password
         };
-        this.$store.dispatch("user/user_login", user).then(res => {
+        this.user_login(user).then(res => {
           if (!res) return;
-          this.$store.dispatch("user/get_user_info", res);
-          this.$store.dispatch("shared/show_modal", false);
+          this.get_info(res);
+          this.show_modal(false);
           this.$router.push("/auth_partner");
-          this.$store.dispatch(
-            "navigation/set_current_nav_list",
-            "/auth_partner"
-          );
         });
-        this.close();
+        this.show_modal(false);
       }
     }
   }

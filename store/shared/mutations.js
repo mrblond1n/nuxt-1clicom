@@ -13,7 +13,4 @@ export default {
   show_modal(state, payload) {
     state.modal = payload;
   },
-  show_drawer(state, payload) {
-    state.drawer = payload;
-  }
 };

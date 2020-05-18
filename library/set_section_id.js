@@ -1,6 +1,5 @@
 export default component => {
   component.$vuetify.goTo(0, { duration: 0 });
-
   document.querySelectorAll(".section").forEach((section, index) => {
     section.setAttribute("id", `section_${index}`);
     if (index === 0) return;

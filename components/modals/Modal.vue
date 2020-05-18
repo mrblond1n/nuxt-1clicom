@@ -3,8 +3,8 @@
     <v-dialog
       v-model="dialog"
       :max-width="modal.name === 'new_info' || modal.name === 'pdf' ? '1000' :'390'"
-      @click:outside="close"
-      @keydown.esc="close"
+      @click:outside="close(false)"
+      @keydown.esc="close(false)"
     >
       <app-sign-in-form v-if="modal.name === 'point_entry'" :modal_info="modal"></app-sign-in-form>
       <app-new-info v-else-if="modal.name === 'new_info'" :new_info="modal.info"></app-new-info>
@@ -19,6 +19,7 @@ import appSimpleForm from "./Simple_form";
 import appSignInForm from "./SignIn_form";
 import appPdf from "./PDF";
 import appNewInfo from "./New_info";
+import { mapState, mapActions } from "vuex";
 export default {
   components: {
     appSimpleForm,
@@ -32,14 +33,10 @@ export default {
     };
   },
   computed: {
-    modal() {
-      return this.$store.getters["shared/modal"];
-    }
+    ...mapState("shared", ["modal"])
   },
   methods: {
-    close() {
-      this.$store.dispatch("shared/show_modal", false);
-    }
+    ...mapActions({ close: "shared/show_modal" })
   }
 };
 </script>
