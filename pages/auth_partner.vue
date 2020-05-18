@@ -37,12 +37,13 @@
       </section>
 
       <app-contacts-section class="section partner" />
-      <app-administration-section class="section partner" v-if="access_to_admin" />
+      <app-administration-section class="section partner" v-if="super_user" />
     </v-layout>
   </v-content>
 </template>
 
 <script>
+import { mapState } from "vuex";
 import appOrderKeyForm from "~/components/Forms/OrderKeyForm";
 import appTestAccessForm from "~/components/Forms/OrderTestAcc";
 import appTopSection from "~/components/Auth_partner/top_section/Section";
@@ -336,15 +337,7 @@ export default {
     };
   },
   computed: {
-    access_to_admin() {
-      return this.$store.getters["user/super_user_is_set"];
-    }
-    // news() {
-    //   return this.$store.getters["auth_user_page/section_news"];
-    // },
-    // sections() {
-    //   return this.$store.getters["auth_user_page/sections"];
-    // },
+    ...mapState("user", ["super_user"])
   },
   mounted() {
     set_section_id(this);

@@ -1,19 +1,7 @@
 <template>
   <v-app id="inspire">
-    <app-navigation
-      :drawer="drawer"
-      :nav_list="nav_list"
-      :user_set="user"
-      @close_drawer="drawer = false"
-      :super_user="super_user"
-    />
-    <app-header
-      :nav_list="nav_list"
-      :user_set="user"
-      @show_drawer="drawer = true"
-      :show_modal="show_modal"
-      :logout="logout"
-    />
+    <app-header @show_drawer="show_drawer" :nav_list="nav_list" />
+    <app-navigation :drawer="drawer" @show_drawer="show_drawer" :nav_list="nav_list" />
 
     <!-- CONTENT -->
     <v-content class="pa-0 content" style="overflow: hidden">
@@ -38,14 +26,14 @@
       </v-snackbar>
     </template>
     <!-- MODAL -->
-    <app-modal v-if="$store.state.shared.modal" />
+    <app-modal v-if="modal" />
   </v-app>
 </template>
 
 <script>
-import appHeader from "~/components/header";
-import appNavigation from "~/components/leftBar";
-import appFooter from "~/components/footer";
+import appHeader from "./appHeader";
+import appNavigation from "./appDrawer";
+import appFooter from "./appFooter";
 import appModal from "@/components/modals/Modal";
 
 import { mapState, mapActions } from "vuex";
@@ -59,7 +47,7 @@ export default {
   },
   data() {
     return {
-      drawer: false,
+      drawer: true,
       list: [
         { title: "лик: эксперт", path: "/expert" },
         { title: "лик: эксперт 1с", path: "/expert_1c" },
@@ -178,7 +166,7 @@ export default {
   },
   computed: {
     ...mapState("user", ["user", "super_user"]),
-    ...mapState("shared", ["loading", "snackbar"]),
+    ...mapState("shared", ["snackbar", "modal"]),
     nav_list() {
       return this.navigation_lists.filter(
         el => el.name === this.$route.name
@@ -192,8 +180,8 @@ export default {
       clear_snackbar: "shared/clear_snackbar",
       auto_login: "user/auto_user_login"
     }),
-    opacityColor(color) {
-      return `rgba(${color}, .7)`;
+    show_drawer(val) {
+      this.drawer = val;
     }
   },
   mounted() {

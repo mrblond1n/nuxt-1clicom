@@ -108,6 +108,9 @@ export default {
   user_logout({ commit }) {
     let authLogout_url = `${process.env.AUTH_URL}/logout/`;
     this.$axios.post(authLogout_url, localStorage.sid);
+    if (window.location.pathname === '/auth_partner') this.$router.push('/partner_page');
+
+
     localStorage.removeItem("sid");
     commit("set_super_user", null);
     commit("set_user", null);
