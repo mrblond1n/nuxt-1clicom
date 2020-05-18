@@ -24,7 +24,7 @@
                   </ul>
                   <v-btn
                     color="indigo"
-                    @click="modal_window_call(column.button_id, `Заявка ${column.button_text}`)"
+                    @click="show_modal(column.button_id, `Заявка ${column.button_text}`)"
                     dark
                   >{{column.button_text}}</v-btn>
                 </v-layout>
@@ -40,7 +40,7 @@
 
 <script>
 import appContactsSection from "~/components/Auth_partner/Contacts";
-import { mapState } from "vuex";
+import { mapState, mapActions } from "vuex";
 
 import set_section_id from "~/library/set_section_id";
 export default {
@@ -66,7 +66,7 @@ export default {
             "Вы получите возможность участия в партнерских акциях"
           ],
           description_title:
-            "Вам нужно подписать с нами <a href='./assets/files/agent.docx'>Агентский договор</a>",
+            "Вам нужно подписать с нами <a target='_blank' href='http://licweb.ru/1clicom/files/agent.docx'>Агентский договор</a>",
           description_list: [
             "Вы выставляете счет клиенту",
             "Вы получаете оплату от клиента",
@@ -85,10 +85,10 @@ export default {
             "Мы проведем для Вас обучение работе с сервисами",
             "Мы обеспечим техническую и информационную поддержку",
             "Вы получите возможность участия в партнерских акциях",
-            "Размещение контактов вашей компании в разделе «Где купить» на сайте <a href='http://1clicom.ru/bay.php'>1clicom.ru</a>"
+            "Размещение контактов вашей компании в разделе «Где купить» на сайте <a href='#' class='to_shops'>1clicom.ru</a>"
           ],
           description_title:
-            "Вам нужно подписать с нами <a href='./assets/files/partner.doc'>Партнерский договор</a> и разместить информацию на своем сайте о сервисах ЛИК",
+            "Вам нужно подписать с нами <a target='_blank' href='http://licweb.ru/1clicom/files/partner.docx'>Партнерский договор</a> и разместить информацию на своем сайте о сервисах ЛИК",
           description_list: [
             "Мы выставим счет Вашему клиенту",
             "Мы перечислим Вам 40% при оплате на карту или 50% при оплате по счету от суммы оплаченной клиентом"
@@ -100,8 +100,9 @@ export default {
     };
   },
   methods: {
-    modal_window_call(id, txt, type) {
-      this.$store.dispatch("shared/showModal", {
+    ...mapActions({ modal: "shared/show_modal" }),
+    show_modal(id, txt, type) {
+      this.modal({
         id: id,
         txt: txt,
         type: type
@@ -113,6 +114,10 @@ export default {
   },
   mounted() {
     set_section_id(this);
+    document.querySelector(".to_shops").addEventListener("click", e => {
+      e.preventDefault();
+      this.$router.push("/shop_location");
+    });
   }
 };
 </script>

@@ -165,7 +165,6 @@ export default {
     };
   },
   computed: {
-    ...mapState("user", ["user", "super_user"]),
     ...mapState("shared", ["snackbar", "modal"]),
     nav_list() {
       return this.navigation_lists.filter(
