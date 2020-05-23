@@ -1,7 +1,6 @@
 <template>
   <v-card>
     <v-card-title class="headline">{{modal_title}}</v-card-title>
-    {{modal}}
     <template>
       <v-card-text>
         <v-form v-model="form_valid" ref="form">

@@ -200,7 +200,7 @@ export default {
               {
                 text: "Скачать ЛИК:ЭКСПЕРТ для 1С*",
                 src: "1c-logo",
-                href: "https://1clicom.ru/soft/LicExpert.epf",
+                href: "http://1clicom.ru/soft/LicExpert.epf",
                 download: true
               }
             ],
@@ -213,7 +213,7 @@ export default {
               {
                 text: "Скачать ЛИК:ЭКСПЕРТ для 1С*",
                 src: "1c-logo",
-                href: "https://1clicom.ru/soft/LicExpert.epf",
+                href: "http://1clicom.ru/soft/LicExpert.epf",
                 download: true
               }
             ],

@@ -8,7 +8,7 @@
     >
       <app-sign-in-form v-if="modal.name === 'point_entry'" :modal_info="modal"></app-sign-in-form>
       <app-new-info v-else-if="modal.name === 'new_info'" :new_info="modal.info"></app-new-info>
-      <app-pdf v-else-if="modal.name === 'pdf'" :info="modal"></app-pdf>
+      <pdf v-else-if="modal.name === 'pdf'" :src="require(`@/static/files/${modal.src}`)" />
       <app-simple-form v-else :modal_info="modal"></app-simple-form>
     </v-dialog>
   </v-row>
@@ -17,15 +17,13 @@
 <script>
 import appSimpleForm from "./Simple_form";
 import appSignInForm from "./SignIn_form";
-import appPdf from "./PDF";
 import appNewInfo from "./New_info";
 import { mapState, mapActions } from "vuex";
 export default {
   components: {
     appSimpleForm,
     appSignInForm,
-    appNewInfo,
-    appPdf
+    appNewInfo
   },
   data() {
     return {

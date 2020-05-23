@@ -78,8 +78,16 @@ export default {
           ? this.logout()
           : this.modal({ name: item.id });
       } else {
-        if (this.$route.name === "home") return;
-        this.$vuetify.goTo(`#section_${i}`, this.option_scroll);
+        if (
+          this.$route.name === "home" ||
+          !document.querySelector(`#section_${i}`)
+        )
+          return;
+        try {
+          this.$vuetify.goTo(`#section_${i}`, this.option_scroll);
+        } catch (e) {
+          console.log(e);
+        }
       }
     },
     show(item) {

@@ -103,25 +103,26 @@ export default {
                 text: "Скачать лик:менеджер для ос windows",
                 icon: "mdi-microsoft-windows",
                 href:
-                  "https://1clicom.ru/soft/releases/lic_manager_win_2.2.5.zip",
+                  "http://1clicom.ru/soft/releases/lic_manager_win_2.2.5.zip",
                 download: true
               },
               {
                 text: "Руководство по установке и регистрации",
                 icon: "mdi-file",
-                href: "https://1clicom.ru/instruction/manual_LICmanager.pdf",
+                href: "http://1clicom.ru/instruction/manual_LICmanager.pdf",
                 download: true
               },
               {
                 text: "Пример списка юридических лиц",
                 icon: "mdi-file",
-                modal: true
+                modal: true,
+                src: "spisok.pdf"
               },
               {
                 text: "Скачать лик:менеджер для ос windows XP",
                 icon: "mdi-microsoft-windows",
                 href:
-                  "https://1clicom.ru/soft/releases/lic_manager_win_2.2.5-XP.zip",
+                  "http://1clicom.ru/soft/releases/lic_manager_win_2.2.5-XP.zip",
                 download: true
               }
             ],

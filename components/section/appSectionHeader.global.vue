@@ -89,12 +89,7 @@
                     @click="item.src ? modal_window_call(item.src) : () => {}"
                   >{{item.text}}</li>
                 </ul>
-                <v-btn
-                  :color="set_color()"
-                  class="mt-4"
-                  @click="modal_window_call"
-                  dark
-                >{{info.button}}</v-btn>
+                <v-btn color="warning" class="mt-4" @click="modal_window_call" dark>{{info.button}}</v-btn>
               </v-layout>
             </template>
           </template>
@@ -124,21 +119,34 @@
             <v-layout column align-center class="my-5" :key="`buttons_${i}`">
               <ul class="d-flex flex-wrap justify-center">
                 <li class="ma-2" v-for="(button, i) in buttons.list" :key="i">
-                  <v-btn
-                    rounded
-                    color="rgba(0,0,0,.3)"
-                    dark
-                    small
-                    :download="button.download"
-                    :disabled="button.download"
-                    target="_blank"
-                    :tag="button.href ? 'a' : 'button'"
-                    :href="button.href ? button.href : ''"
-                  >
-                    <v-icon small v-if="button.icon">{{button.icon}}</v-icon>
-                    <!-- <svg-icon v-else name="1c-logo" class="svg mx-1" /> -->
-                    {{button.text}}
-                  </v-btn>
+                  <template v-if="button.href">
+                    <v-btn
+                      rounded
+                      color="rgba(0,0,0,.3)"
+                      dark
+                      small
+                      download
+                      target="_blank"
+                      :href="button.href"
+                    >
+                      <v-icon small v-if="button.icon">{{button.icon}}</v-icon>
+                      <!-- <svg-icon v-else name="1c-logo" class="svg mx-1" /> -->
+                      {{button.text}}
+                    </v-btn>
+                  </template>
+                  <template v-else>
+                    <v-btn
+                      rounded
+                      color="rgba(0,0,0,.3)"
+                      dark
+                      small
+                      @click="modal({name: 'pdf', src: button.src})"
+                    >
+                      <v-icon small v-if="button.icon">{{button.icon}}</v-icon>
+                      <!-- <svg-icon v-else name="1c-logo" class="svg mx-1" /> -->
+                      {{button.text}}
+                    </v-btn>
+                  </template>
                 </li>
               </ul>
               <div class="caption mt-5" :key="`desc_${i}`">{{buttons.description}}</div>
@@ -152,6 +160,7 @@
 
 <script>
 // import SvgIcon from "@/components/Mist/SvgIcon";
+import { mapActions } from "vuex";
 export default {
   components: {
     // SvgIcon
@@ -172,6 +181,7 @@ export default {
     };
   },
   methods: {
+    ...mapActions({ modal: "shared/show_modal" }),
     modal_window_call(src) {
       if (typeof src === "string") {
         this.$store.dispatch("shared/show_modal", {
